@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhani | Developer Portfolio</title>
+    <meta name="description" content="Modern developer portfolio with terminal-inspired design">
+    <meta name="author" content="serozr">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/animations.css">
+</head>
+<body>
+    <!-- Terminal Boot Screen - signed: serozr -->
+    <div id="bootScreen" class="boot-screen">
+        <div class="boot-content">
+            <div class="boot-header">
+                <pre class="ascii-art">
+ ____  _____ _   _ _____ _     ___  ____  _____ ____  
+|  _ \| ____| | | | ____| |   / _ \|  _ \| ____|  _ \ 
+| | | |  _| | | | |  _| | |  | | | | |_) |  _| | |_) |
+| |_| | |___| |_| | |___| |__| |_| |  __/| |___|  _ < 
+|____/|_____|\___/|_____|_____\___/|_|   |_____|_| \_\
+                </pre>
+            </div>
+            <div class="boot-terminal">
+                <p><span class="boot-prompt">[SYSTEM]</span> <span class="boot-text">Initializing system...</span></p>
+                <p><span class="boot-prompt">[BOOT]</span> <span class="boot-text">Loading core modules</span> <span class="boot-dots"></span></p>
+                <p><span class="boot-prompt">[INIT]</span> <span class="boot-text">Mounting file systems</span> <span class="boot-status boot-ok">[OK]</span></p>
+                <p><span class="boot-prompt">[LOAD]</span> <span class="boot-text">Starting network services</span> <span class="boot-status boot-ok">[OK]</span></p>
+                <p><span class="boot-prompt">[EXEC]</span> <span class="boot-text">Loading portfolio.sh</span> <span class="boot-dots"></span></p>
+                <p><span class="boot-prompt">[INIT]</span> <span class="boot-text">Initializing user interface</span> <span class="boot-status boot-ok">[OK]</span></p>
+                <p><span class="boot-prompt">[DONE]</span> <span class="boot-text">System ready</span> <span class="boot-status boot-ready">[READY]</span></p>
+            </div>
+            <div class="boot-progress">
+                <div class="boot-progress-bar"></div>
+            </div>
+            <p class="boot-footer">Press any key to continue... <span class="boot-sign">— dhani</span></p>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-content">
+            <div class="logo">&gt;_dhani.sh <span class="logo-sign"></span></div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#about" onclick="closeMenu()">About</a>
+                <a href="#skills" onclick="closeMenu()">Skills</a>
+                <a href="#experience" onclick="closeMenu()">Experience</a>
+                <a href="#education" onclick="closeMenu()">Education</a>
+                <a href="#certifications" onclick="closeMenu()">Certifications</a>
+                <a href="#contact" onclick="closeMenu()">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <div class="tag">// web developer & Designer</div>
+            <h1>ZHOSH</h1>
+            <p class="subtitle">Building digital experiences — crafted by serozr</p>
+            
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                </div>
+                <div class="terminal-text">
+                    <p><span class="prompt">$</span> <span class="command">./get_profile.sh</span></p>
+                    <p class="output">Developer with expertise in:</p>
+                    <p class="output"><span class="prompt">&gt;</span> Web Development</p>
+                    <p class="output"><span class="prompt">&gt;</span> UI/UX Design</p>
+                    <p class="output"><span class="prompt">&gt;</span> Creative Projects</p>
+                    <br>
+                    <p><span class="prompt">$</span> <span class="command">cat contact.txt</span></p>
+                    <p class="output">GitHub: <a href="https://github.com/Zhoshk" target="_blank" class="link">github.com/Zhoshk</a> <span class="muted">· by Dhani</span></p>
+                    <br>
+                    <p><span class="prompt">$</span> <span class="output">_</span><span style="animation: blink 1s infinite;">|</span></p>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <!-- Quick sign -->
+                <span class="cta-sign">signed: dhani</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="about-content fade-in">
+                <div class="about-text">
+                    <p class="about-intro">
+                        Hi! I'm <span class="highlight">Ramadhani Akbar Surya</span>, a dedicated web developer and UI/UX designer with a growing expertise in cybersecurity.  
+                        I focus on crafting immersive, user-centered digital experiences that are secure and resilient by design. <span class="about-sign">— dhani</span>
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2+</div>
+                            <div class="stat-label">Years of Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Cups of Coffee</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="code-dot dot-red"></div>
+                            <div class="code-dot dot-yellow"></div>
+                            <div class="code-dot dot-green"></div>
+                            <span class="code-title">about.js</span>
+                        </div>
+                        <div class="code-content">
+<pre><code><span class="code-keyword">const</span> <span class="code-variable">professionalProfile</span> = {
+  <span class="code-property">name</span>: <span class="code-string">"Ramadhani Akbar Surya"</span>,
+  <span class="code-property">role</span>: <span class="code-string">"Full Stack Developer & SOC Enthusiast"</span>,
+  <span class="code-property">location</span>: <span class="code-string">"Internet"</span>,
+  <span class="code-property">interests</span>: [
+    <span class="code-string">"Web Development"</span>,
+    <span class="code-string">"UI/UX Design"</span>,
+    <span class="code-string">"Cybersecurity"</span>,  
+  ],
+  <span class="code-property">currentlyLearning</span>: [
+    <span class="code-string">"Advanced Cybersecurity Practices (SIEM, Incident Response)"</span>,
+    <span class="code-string">"Penetration Testing (TryHackMe, LetsDefend)"</span>
+    <span class="code-string">"Defensive Security Strategies"</span>
+  ],
+  <span class="code-property">interests</span>: [
+    <span class="code-string">"Web Development"</span>,
+    <span class="code-string">"UI/UX Design"</span>,
+    <span class="code-string">"Cybersecurity"</span>,
+  ],
+    <span class="code-property">funFact</span>: 
+    <span class="code-string">"I approach product development with a 'Secure-by-Design' mindset, 
+    ensuring usability and security go hand-in-hand."</span>
+};</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category fade-in">
+                <h3>Frontend Development</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML/CSS</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>PHP</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="80%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category fade-in" style="animation-delay: 0.2s;">
+                <h3>Design & Tools</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>UI/UX Design</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Git/GitHub</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Responsive Design</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="95%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category fade-in" style="animation-delay: 0.1s;">
+                <h3>Cybersecurity</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Phishing Analysis</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Security Monitoring Analysis</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="70%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Incident Handling</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 0%" data-width="75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Front-End Developer</h3>
+                    <div class="timeline-date">2022 - Present</div>
+                    <p class="timeline-description">
+                            Specialized in creating immersive web experiences with advanced CSS animations and JavaScript interactions.
+                            Developed multiple creative projects showcasing interactive animations and experimental UI.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in" style="animation-delay: 0.1s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Cybersecurity Analyst</h3>
+                    <div class="timeline-date">2025 - Present</div>
+                    <p class="timeline-description">
+                        Protecting digital environments through proactive monitoring, 
+                        threat detection, and incident analysis. Currently contributing 
+                        to security operations by analyzing alerts, investigating phishing 
+                        attempts, and supporting vulnerability remediation.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in" style="animation-delay: 0.2s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Web Designer</h3>
+                    <div class="timeline-date">2022 - 2023</div>
+                    <p class="timeline-description">
+                        Designed and prototyped user interfaces for various web applications.
+                        Focused on modern design trends and user-centered design principles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Cyber Security</h3>
+                    <div class="timeline-date">2024 - Present</div>
+                    <p class="timeline-description">
+                        Studied cybersecurity principles, network security, ethical hacking, and digital forensics.
+                        Specialized in secure web development and protecting applications against cyber threats.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in" style="animation-delay: 0.1s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Self-Learning & Online Courses</h3>
+                    <div class="timeline-date">2019 - Present</div>
+                    <p class="timeline-description">
+                        Continuously learning new technologies through online platforms.
+                        Completed courses in React, Node.js, UI/UX Design, and advanced JavaScript.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2>Certifications & Awards</h2>
+        <div class="certifications-grid">
+            <div class="cert-card fade-in">
+                <div class="cert-icon">🏆</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Web Development</div>
+                        <div class="cert-issuer">FreeCodeCamp</div>
+                    </div>
+                </div>
+                <h3>Responsive Web Design</h3>
+                <p class="cert-description">
+                    Completed comprehensive curriculum covering HTML5, CSS3, Flexbox, Grid, and responsive design principles.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2024</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
+                <div class="cert-icon">🔐</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Cybersecurity</div>
+                        <div class="cert-issuer">Coursera</div>
+                    </div>
+                </div>
+                <h3>Ethical Hacking Fundamentals</h3>
+                <p class="cert-description">
+                    Learned penetration testing, vulnerability assessment, and security best practices for web applications.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2024</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.2s;">
+                <div class="cert-icon">⚛️</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">JavaScript</div>
+                        <div class="cert-issuer">Udemy</div>
+                    </div>
+                </div>
+                <h3>Advanced React & Redux</h3>
+                <p class="cert-description">
+                    Mastered modern React patterns, state management, hooks, and building scalable applications.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2023</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.3s;">
+                <div class="cert-icon">🎨</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Design</div>
+                        <div class="cert-issuer">Google</div>
+                    </div>
+                </div>
+                <h3>UX Design Professional</h3>
+                <p class="cert-description">
+                    Comprehensive training in user research, wireframing, prototyping, and usability testing methodologies.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2023</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.4s;">
+                <div class="cert-icon">🌐</div>
+                <div class="cert-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Backend</div>
+                        <div class="cert-issuer">Node.js Foundation</div>
+                    </div>
+                </div>
+                <h3>Node.js Application Developer</h3>
+                <p class="cert-description">
+                    Professional certification in building scalable server-side applications with Node.js and Express.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2023</span>
+                    <a href="#" class="cert-link">Verify &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cert-card fade-in" style="animation-delay: 0.5s;">
+                <div class="cert-icon">⭐</div>
+                <div class="cert-badge award-badge">
+                    <div class="cert-badge-inner">
+                        <div class="cert-title">Award</div>
+                        <div class="cert-issuer">Hackathon 2024</div>
+                    </div>
+                </div>
+                <h3>Best UI/UX Design Award</h3>
+                <p class="cert-description">
+                    First place winner for innovative interface design and user experience at the Regional Web Dev Hackathon.
+                </p>
+                <div class="cert-footer">
+                    <span class="cert-date">2024</span>
+                    <span class="cert-badge-text">🥇 Winner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-grid">
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:ramadhaniras@gmail.com">ramadhaniras@gmail.com</a>
+                </div>
+
+                <div class="contact-item fade-in" style="animation-delay: 0.1s;">
+                    <div class="contact-icon">💼</div>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/Zhoshk" target="_blank">github.com/Zhoshk</a>
+                </div>
+
+                <div class="contact-item fade-in" style="animation-delay: 0.2s;">
+                    <div class="contact-icon">🔗</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/ramadhaniakbarsurya" target="_blank">linkedin.com/in/ramadhaniakbarsurya</a>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in">
+                <form>
+                    <div class="form-group">
+                        <label>$ name --input</label>
+                        <input type="text" placeholder="dhani" required>
+                        <small class="field-sign">Signed by dhani</small>
+                    </div>
+                    <div class="form-group">
+                        <label>$ email --input</label>
+                        <input type="email" placeholder="dhani@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>$ message --input</label>
+                        <textarea placeholder="Your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <p>&copy; 2026 <span class="signature">dhani</span>. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Made with ❤️ using HTML, CSS & JavaScript</p>
+        <p style="margin-top: 0.25rem; font-size: 0.8rem; color: #bbb;">Site signed and maintained by <strong>dhani</strong></p>
+    </footer>
+
+
+    <script src="src/js/main.js"></script>
+</body>
+</html>
+
+<!-- End of file - signed: serozr -->
