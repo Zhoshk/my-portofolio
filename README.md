@@ -159,7 +159,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👨‍💻 Author
 
-**serozr** • [GitHub](https://github.com/serozr) • [Twitter](https://twitter.com/serodxr) • [Portfolio](https://www.serozr.me/)
+**zhoshk** • [GitHub](https://github.com/Zhoshk) • [Portfolio](https://ramadhaniakbarsurya.vercel.app/)
 
 ## 💬 Support
 
@@ -169,6 +169,6 @@ Give it a ⭐️ if you like this project! For issues or questions, open an issu
 
 <div align="center">
 
-**Made with ❤️ by [serozr](https://github.com/serozr)**
+**Made with ❤️ by [serozr](https://github.com/Zhoshk)**
 
 </div>
