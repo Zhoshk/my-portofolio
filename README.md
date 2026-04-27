@@ -4,13 +4,13 @@
 
 ### Modern Developer Portfolio with Terminal-Inspired Design
 
-<a href="https://serozr.me/cyber-portfolio" target="_blank">
+<a href="https://ramadhaniakbarsurya.vercel.app/" target="_blank">
   <img src="https://img.shields.io/badge/🌐_Click_to_Check_Live-00CC00?style=for-the-badge&logoColor=black" alt="Live Demo" height="35">
 </a>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/serozr/cyber-portfolio?style=social)](https://github.com/serozr/cyber-portfolio/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/serozr/cyber-portfolio?style=social)](https://github.com/serozr/cyber-portfolio/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Zhoshk/my-portofolio?style=social)](https://github.com/serozr/cyber-portfolio/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Zhoshk/my-portofolio?style=social)](https://github.com/Zhoshk/my-portfolio/network/members)
 
 <img alt="Portfolio Preview" src="src\assets\images\mockup.png" width="800px" />
 
@@ -55,8 +55,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/serozr/cyber-portfolio.git
-cd cyber-portfolio
+git clone https://github.com/Zhoshk/my-portofolio.git
+cd my-portfolio
 
 # Option 1: Open directly
 start index.html
