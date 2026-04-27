@@ -533,57 +533,40 @@ h2::after {
 }
 
 .cert-card {
-    background: rgba(26, 26, 26, 0.8);
-    border: 1px solid rgba(0, 255, 140, 0.3);
-    border-radius: 15px;
-    padding: 2rem;
-    transition: all 0.3s;
+    background: rgba(10, 28, 20, 0.85);
+    border: 1px solid rgba(0, 255, 140, 0.22);
+    border-radius: 12px;
+    padding: 2rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
 }
 
-.cert-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(0, 255, 140, 0.1), transparent);
-    transform: rotate(45deg);
-    transition: all 0.6s;
-}
-
-.cert-card:hover::before {
-    top: -100%;
-    right: -100%;
-}
-
 .cert-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 40px rgba(0, 255, 140, 0.4);
-    border-color: #00FF8C;
+    transform: translateY(-6px);
+    box-shadow: 0 0 28px rgba(0, 255, 140, 0.18);
+    border-color: rgba(0, 255, 140, 0.5);
 }
 
 .cert-icon {
-    font-size: 3rem;
+    font-size: 2.75rem;
     text-align: center;
     margin-bottom: 1rem;
-    filter: drop-shadow(0 0 10px rgba(0, 255, 140, 0.5));
 }
 
 .cert-badge {
-    background: linear-gradient(135deg, rgba(0, 255, 140, 0.2), rgba(0, 217, 255, 0.2));
-    border: 1px solid rgba(0, 255, 140, 0.4);
-    border-radius: 10px;
-    padding: 0.8rem 1rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
+    background: rgba(0, 255, 140, 0.1);
+    border: 1px solid rgba(0, 255, 140, 0.3);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    margin-bottom: 1.25rem;
 }
 
 .award-badge {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
-    border-color: rgba(255, 215, 0, 0.4);
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
 }
 
 .cert-badge-inner {
@@ -596,6 +579,7 @@ h2::after {
     color: #00FF8C;
     font-size: 0.85rem;
     font-weight: bold;
+    font-family: 'Courier New', monospace;
 }
 
 .award-badge .cert-title {
@@ -603,8 +587,9 @@ h2::after {
 }
 
 .cert-issuer {
-    color: #00D9FF;
-    font-size: 0.8rem;
+    color: #aaa;
+    font-size: 0.82rem;
+    font-family: 'Courier New', monospace;
 }
 
 .award-badge .cert-issuer {
@@ -613,16 +598,18 @@ h2::after {
 
 .cert-card h3 {
     color: #fff;
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
     line-height: 1.4;
+    font-family: 'Courier New', monospace;
 }
 
 .cert-description {
-    color: #aaa;
+    color: #888;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.88rem;
+    flex-grow: 1;
 }
 
 .cert-footer {
@@ -630,32 +617,34 @@ h2::after {
     justify-content: space-between;
     align-items: center;
     padding-top: 1rem;
-    border-top: 1px solid rgba(0, 255, 140, 0.2);
+    border-top: 1px solid rgba(0, 255, 140, 0.15);
+    margin-top: auto;
 }
 
 .cert-date {
-    color: #00D9FF;
-    font-size: 0.9rem;
+    color: #00FF8C;
+    font-size: 0.88rem;
     font-weight: bold;
+    font-family: 'Courier New', monospace;
 }
 
 .cert-link {
     color: #00FF8C;
     text-decoration: none;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    font-family: 'Courier New', monospace;
     transition: all 0.3s;
 }
 
 .cert-link:hover {
     color: #00D9FF;
-    transform: translateX(5px);
 }
 
 .cert-badge-text {
     color: #FFD700;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
 }
 
 .projects-grid {
@@ -1337,6 +1326,244 @@ footer .signature {
     border-radius: 6px;
     font-weight: bold;
     font-family: 'Courier New', monospace;
+}
+
+/* Experience & Education - Alternating Timeline */
+.exp-timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 3rem auto 0;
+    padding: 1rem 0 2rem;
+}
+
+.exp-timeline-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, #00FF8C 0%, #00D9FF 60%, transparent 100%);
+    top: 0;
+}
+
+.exp-timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.exp-timeline-item.left {
+    flex-direction: row-reverse;
+}
+
+.exp-timeline-item.right {
+    flex-direction: row;
+}
+
+.exp-timeline-dot {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    background: #00FF8C;
+    border: 3px solid #121212;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    box-shadow: 0 0 18px rgba(0, 255, 140, 0.7);
+}
+
+.exp-timeline-content {
+    background: rgba(18, 24, 50, 0.85);
+    border: 1px solid rgba(0, 255, 140, 0.3);
+    padding: 1.5rem 1.75rem;
+    border-radius: 10px;
+    width: calc(50% - 2.5rem);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.exp-timeline-item.left .exp-timeline-content {
+    margin-right: calc(50% + 2rem);
+    text-align: right;
+}
+
+.exp-timeline-item.right .exp-timeline-content {
+    margin-left: calc(50% + 2rem);
+}
+
+.exp-timeline-content:hover {
+    border-color: rgba(0, 255, 140, 0.65);
+    box-shadow: 0 0 22px rgba(0, 255, 140, 0.18);
+    transform: translateY(-4px);
+}
+
+.exp-timeline-content h3 {
+    color: #00FF8C;
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+    font-family: 'Courier New', monospace;
+}
+
+.exp-timeline-date {
+    color: #00D9FF;
+    font-size: 0.88rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    font-family: 'Courier New', monospace;
+}
+
+.exp-timeline-content p {
+    color: #aaa;
+    line-height: 1.65;
+    font-size: 0.92rem;
+}
+
+/* Certifications & Awards Grid */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+    margin-top: 3rem;
+}
+
+.cert-card {
+    background: rgba(15, 32, 28, 0.75);
+    border: 1px solid rgba(0, 255, 140, 0.25);
+    border-radius: 12px;
+    padding: 2rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: all 0.3s ease;
+}
+
+.cert-card:hover {
+    border-color: rgba(0, 255, 140, 0.55);
+    box-shadow: 0 0 24px rgba(0, 255, 140, 0.15);
+    transform: translateY(-5px);
+}
+
+.cert-icon {
+    font-size: 2.75rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.cert-badge {
+    background: rgba(0, 255, 140, 0.12);
+    border: 1px solid rgba(0, 255, 140, 0.3);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.cert-badge-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cert-title {
+    color: #00FF8C;
+    font-weight: bold;
+    font-size: 0.85rem;
+    font-family: 'Courier New', monospace;
+}
+
+.cert-issuer {
+    color: #aaa;
+    font-size: 0.82rem;
+    font-family: 'Courier New', monospace;
+}
+
+.cert-card h3 {
+    color: #fff;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    font-family: 'Courier New', monospace;
+    line-height: 1.4;
+}
+
+.cert-description {
+    color: #888;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 1.25rem;
+}
+
+.cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0, 255, 140, 0.15);
+    padding-top: 1rem;
+    margin-top: auto;
+}
+
+.cert-date {
+    color: #00FF8C;
+    font-weight: bold;
+    font-size: 0.88rem;
+    font-family: 'Courier New', monospace;
+}
+
+.cert-link {
+    color: #00FF8C;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.88rem;
+    font-family: 'Courier New', monospace;
+    transition: color 0.3s;
+}
+
+.cert-link:hover {
+    color: #00D9FF;
+}
+
+.cert-badge-text {
+    color: #FFD700;
+    font-weight: bold;
+    font-size: 0.88rem;
+}
+
+.award-badge {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .exp-timeline-line {
+        left: 20px;
+    }
+    .exp-timeline-dot {
+        left: 20px;
+    }
+    .exp-timeline-item.left,
+    .exp-timeline-item.right {
+        flex-direction: row;
+    }
+    .exp-timeline-item.left .exp-timeline-content,
+    .exp-timeline-item.right .exp-timeline-content {
+        margin-left: 3.5rem;
+        margin-right: 0;
+        width: 100%;
+        text-align: left;
+    }
+    .cert-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Experience Section Styling */
