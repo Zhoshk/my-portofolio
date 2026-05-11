@@ -1,806 +1,980 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramadhani Akbar Surya - Portfolio</title>
-    <meta name="description" content="Modern developer portfolio with terminal-inspired design">
-    <meta name="author" content="dhani">
-    <link rel="stylesheet" href="src/css/main.css">
-    <link rel="stylesheet" href="src/css/animations.css">
-    <style>
-        /* Additional CSS for Timeline - Paste this in main.css if not already included */
-        
-        /* Timeline Container */
-        .timeline-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramadhani Akbar Surya | Cybersecurity Analyst & UI/UX Designer</title>
+  <meta name="description" content="Personal website of Ramadhani Akbar Surya, a cybersecurity analyst, UI/UX designer, and web developer from Indonesia." />
+  <meta name="author" content="Ramadhani Akbar Surya" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --green: #00FF8C;
+      --cyan: #00D9FF;
+      --red: #FF3366;
+      --bg: #0a0e1a;
+      --bg2: #111827;
+      --surface: rgba(17, 24, 39, 0.85);
+      --border: rgba(0, 255, 140, 0.2);
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --font: 'Courier New', Courier, monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    /* grid dot background */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(0,255,140,0.08) 1px, transparent 0);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-        .timeline-container::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, #00FF8C 0%, #00D9FF 50%, transparent 100%);
-        }
+    /* ── Scrollbar ─────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
 
-        .timeline {
-            margin-bottom: 4rem;
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
+    /* ── Boot Screen ───────────────────────────────────────────── */
+    #bootScreen {
+      position: fixed; inset: 0;
+      background: #000;
+      z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .5s ease-out;
+    }
+    #bootScreen.fade-out { opacity: 0; pointer-events: none; }
+    .boot-content { max-width: 700px; width: 90%; padding: 2rem; }
+    .ascii-art {
+      color: var(--green);
+      font-size: clamp(0.45rem, 1.2vw, 0.7rem);
+      line-height: 1.2; text-align: center;
+      text-shadow: 0 0 10px rgba(0,255,140,.5);
+      animation: glitch 4s infinite;
+      margin-bottom: 2rem;
+    }
+    .boot-line {
+      color: #aaa; font-size: .9rem; margin-bottom: .6rem;
+      opacity: 0; animation: bootFade .3s forwards;
+    }
+    .boot-line .bp { color: var(--green); font-weight: bold; margin-right: .5rem; }
+    .boot-line .ok { color: var(--green); float: right; font-weight: bold; }
+    .boot-line .ready { color: #FFD700; float: right; animation: pulse 1s infinite; }
+    .boot-line:nth-child(1){ animation-delay:.4s }
+    .boot-line:nth-child(2){ animation-delay:.9s }
+    .boot-line:nth-child(3){ animation-delay:1.4s }
+    .boot-line:nth-child(4){ animation-delay:1.9s }
+    .boot-line:nth-child(5){ animation-delay:2.4s }
+    .boot-line:nth-child(6){ animation-delay:2.9s }
+    .boot-line:nth-child(7){ animation-delay:3.4s }
+    .boot-progress-wrap {
+      height: 4px; background: rgba(255,255,255,.1); border-radius: 2px;
+      overflow: hidden; margin: 1.5rem 0;
+      opacity: 0; animation: bootFade .3s forwards 3.8s;
+    }
+    .boot-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--green), var(--cyan));
+      width: 0; animation: loadBar 1.8s ease-out forwards 3.9s;
+      box-shadow: 0 0 10px rgba(0,255,140,.5);
+    }
+    .boot-footer {
+      text-align: center; color: var(--green); font-size: .85rem;
+      opacity: 0; animation: bootFade .3s forwards 4.5s, pulse 1s infinite 5s;
+    }
+    @keyframes bootFade { to { opacity: 1; } }
+    @keyframes loadBar  { to { width: 100%; } }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+    @keyframes glitch {
+      0%,88%,100%{ transform:translate(0); text-shadow:0 0 10px rgba(0,255,140,.5); }
+      90%{ transform:translate(-2px,2px); text-shadow:0 0 10px rgba(0,255,140,.8),2px 0 5px rgba(255,0,0,.5); }
+      93%{ transform:translate(2px,-2px); text-shadow:0 0 10px rgba(0,255,140,.8),-2px 0 5px rgba(0,0,255,.5); }
+      96%{ transform:translate(0); }
+    }
 
-        .timeline:nth-child(even) {
-            direction: rtl;
-        }
+    /* ── Nav ───────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      background: rgba(10,14,26,.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      padding: .9rem 2rem;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo { color: var(--green); font-weight: bold; font-size: 1.1rem; cursor: pointer; }
+    .nav-logo span { color: var(--cyan); }
+    .nav-links { display: flex; gap: 1.75rem; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .88rem;
+      transition: color .25s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--green);
+      transition: width .25s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 22px; height: 2px; background: var(--green); border-radius: 2px; transition: .3s; }
 
-        .timeline:nth-child(even) .timeline-content {
-            direction: ltr;
-        }
+    /* ── Hero ──────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 5rem 2rem 3rem;
+      position: relative; z-index: 1;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid var(--border); padding: .4rem 1rem;
+      border-radius: 20px; color: var(--green); font-size: .8rem;
+      background: rgba(0,255,140,.06); margin-bottom: 1.5rem;
+    }
+    .hero-tag .dot { width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite; }
+    h1.hero-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2; margin-bottom: .75rem;
+      background: linear-gradient(135deg, #fff 0%, var(--green) 60%, var(--cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; line-height: 1.6; }
+    .role-badges { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .badge {
+      padding: .35rem .85rem; border-radius: 20px; font-size: .78rem; font-weight: bold;
+      border: 1px solid; cursor: default;
+    }
+    .badge-hacker { border-color: var(--green); color: var(--green); background: rgba(0,255,140,.08); }
+    .stats-row { display: flex; gap: 2rem; margin-bottom: 2.5rem; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.8rem; color: var(--green); font-weight: bold; line-height: 1; }
+    .stat-lbl { font-size: .72rem; color: var(--muted); margin-top: .3rem; }
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: .75rem 1.5rem; border-radius: 8px; text-decoration: none;
+      font-family: var(--font); font-size: .85rem; font-weight: bold;
+      transition: all .25s; cursor: pointer; display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-primary { background: var(--green); color: #000; border: 1px solid var(--green); }
+    .btn-primary:hover { background: transparent; color: var(--green); }
+    .btn-outline { background: transparent; color: var(--cyan); border: 1px solid var(--cyan); }
+    .btn-outline:hover { background: var(--cyan); color: #000; }
 
-        .timeline-dot {
-            width: 12px;
-            height: 12px;
-            background: #00FF8C;
-            border: 3px solid #0a0e27;
-            border-radius: 50%;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 0 20px rgba(0, 255, 140, 0.6);
-        }
+    /* Terminal panel */
+    .hero-terminal {
+      background: rgba(10,14,26,.9);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,255,140,.12);
+    }
+    .term-header {
+      background: rgba(0,0,0,.4); padding: .7rem 1rem;
+      display: flex; align-items: center; gap: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .tdot { width:11px;height:11px;border-radius:50%; }
+    .tdot-r{background:#FF5F57} .tdot-y{background:#FFBD2E} .tdot-g{background:#28C840}
+    .term-title { color: var(--muted); font-size: .78rem; margin-left: auto; }
+    .term-body { padding: 1.5rem; font-size: .85rem; line-height: 1.8; }
+    .tp { color: var(--green); } /* prompt */
+    .tc { color: #FF6B6B; }      /* command */
+    .to { color: var(--text); }  /* output */
+    .tb { color: var(--cyan); }  /* link/key */
+    .tm { color: var(--muted); } /* muted */
+    .cursor { display:inline-block; width:8px;height:1em;background:var(--green);animation:pulse .8s infinite;vertical-align:text-bottom; }
 
-        .timeline-content {
-            background: rgba(22, 27, 58, 0.8);
-            border: 1px solid rgba(0, 255, 140, 0.3);
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+    /* ── Sections ──────────────────────────────────────────────── */
+    section { padding: 5rem 2rem; position: relative; z-index: 1; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--green); font-size: .78rem; font-weight: bold;
+      background: rgba(0,255,140,.08); border: 1px solid var(--border);
+      padding: .3rem .9rem; border-radius: 20px; margin-bottom: 1rem;
+    }
+    h2.section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: .5rem;
+      background: linear-gradient(135deg, #fff, var(--green));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-desc { color: var(--muted); font-size: .9rem; margin-bottom: 3rem; line-height: 1.7; }
 
-        .timeline-content:hover {
-            border-color: rgba(0, 255, 140, 0.6);
-            box-shadow: 0 0 20px rgba(0, 255, 140, 0.2);
-            transform: translateY(-5px);
-        }
+    /* ── About ─────────────────────────────────────────────────── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text p { color: var(--muted); line-height: 1.9; margin-bottom: 1.25rem; font-size: .95rem; }
+    .about-text .hl { color: var(--green); font-weight: bold; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+    .a-stat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.25rem; text-align: center; transition: .3s;
+    }
+    .a-stat:hover { border-color: var(--green); transform: translateY(-3px); }
+    .a-stat-num { font-size: 1.8rem; color: var(--green); font-weight: bold; }
+    .a-stat-lbl { color: var(--muted); font-size: .78rem; margin-top: .3rem; }
+    .about-img-wrap { position: sticky; top: 100px; }
+    .code-box {
+      background: rgba(10,14,26,.95); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 0 30px rgba(0,255,140,.1);
+    }
+    .code-box-header {
+      background: rgba(0,0,0,.3); padding: .7rem 1rem;
+      display: flex; align-items: center; gap: .5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .code-box-title { color: var(--muted); font-size: .78rem; margin-left: auto; }
+    .code-box-body { padding: 1.5rem; font-size: .85rem; line-height: 1.75; overflow-x: auto; }
+    .ck{ color:#FF6B6B } .cv{ color:#FFD700 } .cp{ color:var(--cyan) } .cs{ color:var(--green) }
 
-        .timeline-content h3 {
-            color: #00FF8C;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
+    /* ── Skills ────────────────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.75rem; transition: .3s;
+    }
+    .skill-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 0 20px rgba(0,255,140,.12); }
+    .skill-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .skill-card h3 { color: var(--green); font-size: 1rem; margin-bottom: 1.25rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .skill-tag {
+      background: rgba(0,255,140,.08); border: 1px solid rgba(0,255,140,.25);
+      color: var(--text); font-size: .75rem; padding: .3rem .75rem; border-radius: 20px;
+    }
 
-        .timeline-date {
-            color: #00D9FF;
-            font-size: 0.9rem;
-            font-weight: bold;
-            margin-bottom: 0.25rem;
-        }
+    /* ── Experience ────────────────────────────────────────────── */
+    .exp-timeline { position: relative; }
+    .exp-timeline::before {
+      content: ''; position: absolute; left: 50%; top: 0;
+      width: 2px; height: 100%;
+      background: linear-gradient(180deg, var(--green), var(--cyan), transparent);
+      transform: translateX(-50%);
+    }
+    .exp-item {
+      display: grid; grid-template-columns: 1fr 32px 1fr;
+      gap: 2rem; align-items: start; margin-bottom: 3rem;
+    }
+    .exp-item:nth-child(odd) .exp-card { grid-column: 1; }
+    .exp-item:nth-child(odd) .exp-empty { grid-column: 3; }
+    .exp-item:nth-child(even) .exp-card { grid-column: 3; }
+    .exp-item:nth-child(even) .exp-empty { grid-column: 1; }
+    .exp-dot {
+      grid-column: 2; align-self: start; margin-top: .5rem;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--green); border: 3px solid var(--bg);
+      box-shadow: 0 0 16px rgba(0,255,140,.6);
+      justify-self: center;
+    }
+    .exp-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; transition: .3s;
+    }
+    .exp-card:hover { border-color: var(--green); box-shadow: 0 0 20px rgba(0,255,140,.1); transform: translateY(-3px); }
+    .exp-card h3 { color: var(--green); font-size: 1.05rem; margin-bottom: .25rem; }
+    .exp-date { color: var(--cyan); font-size: .8rem; font-weight: bold; margin-bottom: .75rem; }
+    .exp-card p { color: var(--muted); font-size: .88rem; line-height: 1.7; }
+    .exp-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
+    .exp-tag {
+      font-size: .72rem; padding: .2rem .6rem; border-radius: 12px;
+      border: 1px solid rgba(0,217,255,.25); color: var(--cyan);
+      background: rgba(0,217,255,.07);
+    }
 
-        .timeline-school {
-            color: #FF3366;
-            font-size: 0.95rem;
-            margin-bottom: 0.75rem;
-        }
+    /* ── Projects (RPG card style) ─────────────────────────────── */
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .proj-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem; transition: .3s; position: relative;
+      display: flex; flex-direction: column;
+    }
+    .proj-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 0 24px rgba(0,255,140,.14); }
+    .proj-lvl { color: var(--cyan); font-size: .75rem; font-weight: bold; margin-bottom: .5rem; }
+    .proj-card h3 { color: var(--green); font-size: 1rem; margin-bottom: .75rem; }
+    .proj-card p { color: var(--muted); font-size: .85rem; line-height: 1.6; flex: 1; margin-bottom: 1.25rem; }
+    .proj-xp {
+      height: 5px; background: rgba(255,255,255,.08); border-radius: 3px; margin-bottom: 1rem; overflow: hidden;
+    }
+    .proj-xp-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--cyan)); border-radius: 3px; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.25rem; }
+    .proj-tag {
+      font-size: .72rem; padding: .2rem .6rem; border-radius: 12px;
+      background: rgba(0,255,140,.08); border: 1px solid rgba(0,255,140,.2); color: var(--text);
+    }
+    .proj-link {
+      color: var(--cyan); text-decoration: none; font-size: .82rem; font-weight: bold;
+      transition: color .2s;
+    }
+    .proj-link:hover { color: var(--green); }
 
-        .timeline-content p {
-            color: #aaa;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
+    /* ── Blog ──────────────────────────────────────────────────── */
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .blog-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; transition: .3s;
+      display: flex; flex-direction: column;
+    }
+    .blog-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 0 24px rgba(0,255,140,.14); }
+    .blog-top {
+      background: linear-gradient(135deg, rgba(0,255,140,.12), rgba(0,217,255,.12));
+      padding: .75rem 1.25rem; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .blog-cat { color: var(--green); font-size: .72rem; font-weight: bold; }
+    .blog-year { color: var(--muted); font-size: .72rem; }
+    .blog-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .blog-card h3 { color: var(--green); font-size: 1rem; margin-bottom: .75rem; line-height: 1.4; }
+    .blog-card p { color: var(--muted); font-size: .85rem; line-height: 1.6; flex: 1; margin-bottom: 1.25rem; }
+    .blog-link { color: var(--cyan); text-decoration: none; font-size: .82rem; font-weight: bold; transition: color .2s; }
+    .blog-link:hover { color: var(--green); }
 
-        /* Enhanced Form Styling */
-        .contact-form form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+    /* ── Contact ───────────────────────────────────────────────── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-cards { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem; transition: .3s;
+      text-decoration: none;
+    }
+    .contact-card:hover { border-color: var(--green); transform: translateX(4px); }
+    .cc-icon { font-size: 1.4rem; }
+    .cc-label { color: var(--muted); font-size: .72rem; margin-bottom: .15rem; }
+    .cc-value { color: var(--text); font-size: .88rem; }
+    .contact-form-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem;
+    }
+    .cf-group { margin-bottom: 1.25rem; }
+    .cf-label { display: block; color: var(--green); font-size: .8rem; margin-bottom: .4rem; }
+    .cf-input, .cf-textarea {
+      width: 100%; background: rgba(255,255,255,.04);
+      border: 1px solid rgba(0,255,140,.25); border-radius: 8px;
+      padding: .7rem 1rem; color: var(--text); font-family: var(--font); font-size: .88rem;
+      transition: .25s;
+    }
+    .cf-input:focus, .cf-textarea:focus { outline: none; border-color: var(--green); box-shadow: 0 0 12px rgba(0,255,140,.2); }
+    .cf-input::placeholder, .cf-textarea::placeholder { color: #444; }
+    .cf-textarea { resize: vertical; min-height: 130px; }
+    .cf-btn {
+      width: 100%; padding: .85rem; background: var(--green); color: #000;
+      border: none; border-radius: 8px; font-family: var(--font);
+      font-weight: bold; font-size: .9rem; cursor: pointer; transition: .25s;
+    }
+    .cf-btn:hover { background: transparent; color: var(--green); border: 1px solid var(--green); outline: 1px solid var(--green); }
+    #cfMsg { text-align:center; margin-top:.75rem; font-size:.85rem; display:none; border-radius:6px; padding:.5rem; }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+    /* ── Footer ────────────────────────────────────────────────── */
+    footer {
+      background: rgba(10,14,26,.95); border-top: 1px solid var(--border);
+      padding: 3rem 2rem 2rem; position: relative; z-index: 1;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 2.5rem; }
+    .footer-brand p { color: var(--muted); font-size: .85rem; line-height: 1.7; margin-top: .75rem; }
+    .footer-col h4 { color: var(--green); font-size: .88rem; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .5rem; }
+    .footer-col ul li a { color: var(--muted); text-decoration: none; font-size: .82rem; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--green); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { color: var(--muted); font-size: .78rem; }
+    .footer-socials { display: flex; gap: .75rem; }
+    .footer-socials a {
+      color: var(--muted); text-decoration: none; font-size: .78rem;
+      border: 1px solid var(--border); padding: .3rem .7rem; border-radius: 6px; transition: .2s;
+    }
+    .footer-socials a:hover { color: var(--green); border-color: var(--green); }
 
-        .form-group label {
-            color: #00FF8C;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
+    /* ── Animations ────────────────────────────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .lazy-section { opacity: 0; transform: translateY(30px); transition: opacity .6s ease-out, transform .6s ease-out; }
+    .lazy-section.visible { opacity: 1; transform: translateY(0); }
 
-        .form-group input,
-        .form-group textarea {
-            background: rgba(10, 14, 39, 0.6);
-            border: 1px solid rgba(0, 255, 140, 0.3);
-            color: #aaa;
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #00FF8C;
-            background: rgba(10, 14, 39, 0.8);
-            box-shadow: 0 0 10px rgba(0, 255, 140, 0.3);
-            color: #fff;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #555;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-            font-family: 'Courier New', monospace;
-        }
-
-        .field-sign {
-            color: #888;
-            font-size: 0.8rem;
-            font-style: italic;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #00FF8C 0%, #00D9FF 100%);
-            color: #000;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Courier New', monospace;
-            margin-top: 0.5rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 255, 140, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .submit-message {
-            text-align: center;
-            padding: 0.75rem;
-            border-radius: 6px;
-            font-weight: bold;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* Responsive Timeline */
-        @media (max-width: 768px) {
-            .timeline-container::before {
-                left: 20px;
-            }
-
-            .timeline {
-                grid-template-columns: 0 auto 1fr;
-                gap: 1.5rem;
-            }
-
-            .timeline:nth-child(even) {
-                direction: ltr;
-            }
-
-            .timeline:nth-child(even) .timeline-content {
-                direction: ltr;
-            }
-
-            .timeline-dot {
-                margin-left: 10px;
-            }
-        }
-    </style>
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media(max-width:1024px){
+      .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-wrap { position: static; }
+      .exp-timeline::before { left: 20px; }
+      .exp-item { grid-template-columns: 40px 1fr; }
+      .exp-item:nth-child(odd) .exp-card,
+      .exp-item:nth-child(even) .exp-card { grid-column: 2; }
+      .exp-dot { grid-column: 1; }
+      .exp-item:nth-child(odd) .exp-empty,
+      .exp-item:nth-child(even) .exp-empty { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:768px){
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(10,14,26,.97); padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      h1.hero-title { font-size: 1.8rem; }
+      .stats-row { gap: 1.25rem; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Terminal Boot Screen -->
-    <div id="bootScreen" class="boot-screen">
-        <div class="boot-content">
-            <div class="boot-header">
-                <pre class="ascii-art">
- ____  _____ _   _ _____ _     ___  ____  _____ ____  
-|  _ \| ____| | | | ____| |   / _ \|  _ \| ____|  _ \ 
-| | | |  _| | | | |  _| | |  | | | | |_) |  _| | |_) |
-| |_| | |___| |_| | |___| |__| |_| |  __/| |___|  _ < 
-|____/|_____|\___/|_____|_____\___/|_|   |_____|_| \_\
-                </pre>
-            </div>
-            <div class="boot-terminal">
-                <p><span class="boot-prompt">[SYSTEM]</span> <span class="boot-text">Initializing system...</span></p>
-                <p><span class="boot-prompt">[BOOT]</span> <span class="boot-text">Loading core modules</span> <span class="boot-dots"></span></p>
-                <p><span class="boot-prompt">[INIT]</span> <span class="boot-text">Mounting file systems</span> <span class="boot-status boot-ok">[OK]</span></p>
-                <p><span class="boot-prompt">[LOAD]</span> <span class="boot-text">Starting network services</span> <span class="boot-status boot-ok">[OK]</span></p>
-                <p><span class="boot-prompt">[EXEC]</span> <span class="boot-text">Loading portfolio.sh</span> <span class="boot-dots"></span></p>
-                <p><span class="boot-prompt">[INIT]</span> <span class="boot-text">Initializing user interface</span> <span class="boot-status boot-ok">[OK]</span></p>
-                <p><span class="boot-prompt">[DONE]</span> <span class="boot-text">System ready</span> <span class="boot-status boot-ready">[READY]</span></p>
-            </div>
-            <div class="boot-progress">
-                <div class="boot-progress-bar"></div>
-            </div>
-            <p class="boot-footer">Press any key to continue...</p>
-        </div>
+
+<!-- ── BOOT SCREEN ─────────────────────────────────────────────── -->
+<div id="bootScreen">
+  <div class="boot-content">
+    <pre class="ascii-art">
+ ____  _   _    _    _   _ ___ 
+|  _ \| | | |  / \  | \ | |_ _|
+| | | | |_| | / _ \ |  \| || | 
+| |_| |  _  |/ ___ \| |\  || | 
+|____/|_| |_/_/   \_\_| \_|___|
+    </pre>
+    <div>
+      <p class="boot-line"><span class="bp">[SYS]</span> Initializing secure environment...<span class="ok">[OK]</span></p>
+      <p class="boot-line"><span class="bp">[BOOT]</span> Loading kernel modules...<span class="ok">[OK]</span></p>
+      <p class="boot-line"><span class="bp">[INIT]</span> Mounting filesystems...<span class="ok">[OK]</span></p>
+      <p class="boot-line"><span class="bp">[NET]</span> Starting network services...<span class="ok">[OK]</span></p>
+      <p class="boot-line"><span class="bp">[EXEC]</span> Loading portfolio.sh...</p>
+      <p class="boot-line"><span class="bp">[AUTH]</span> Authenticating user: dhani...<span class="ok">[OK]</span></p>
+      <p class="boot-line"><span class="bp">[DONE]</span> System ready.<span class="ready">[READY]</span></p>
     </div>
+    <div class="boot-progress-wrap"><div class="boot-progress-bar"></div></div>
+    <p class="boot-footer">Press any key to continue... — dhani</p>
+  </div>
+</div>
 
-    <nav>
-        <div class="nav-content">
-            <div class="logo">&gt;_dhani.sh <span class="logo-sign"></span></div>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#" onclick="closeMenu()">Home</a>
-                <a href="#about" onclick="closeMenu()">About</a>
-                <a href="#skills" onclick="closeMenu()">Skills</a>
-                <a href="#experience" onclick="closeMenu()">Experience</a>
-                <a href="#certifications" onclick="closeMenu()">Certifications</a>
-                <a href="#projects" onclick="closeMenu()">Projects</a>
-                <a href="#contact" onclick="closeMenu()">Contact</a>
-            </div>
+<!-- ── NAV ─────────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">&gt;_<span>dhani</span>.sh</div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="#home"    onclick="closeMenu()">Home</a>
+      <a href="#about"   onclick="closeMenu()">About</a>
+      <a href="#skills"  onclick="closeMenu()">Skills</a>
+      <a href="#experience" onclick="closeMenu()">Experience</a>
+      <a href="#projects" onclick="closeMenu()">Projects</a>
+      <a href="#blog"    onclick="closeMenu()">Blog</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <!-- Left -->
+    <div class="fade-in">
+      <div class="hero-tag"><span class="dot"></span> Available for opportunities</div>
+      <h1 class="hero-title">Ramadhani Akbar Surya</h1>
+      <p class="hero-sub">Cybersecurity Analyst &amp; UI/UX Designer</p>
+      <div class="role-badges">
+        <span class="badge badge-hacker">🔐 Hacker</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-num">3+</div>
+          <div class="stat-lbl">Years of Experience</div>
         </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content fade-in">
-            <div class="tag">Cybersecurity & Frontend Engineer</div>
-            <h1>Protecting Systems. Designing.</h1>
-            <p class="subtitle">Bridging Security, Design, and Engineering.</p>
-            
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-dot dot-red"></div>
-                    <div class="terminal-dot dot-yellow"></div>
-                    <div class="terminal-dot dot-green"></div>
-                </div>
-                <div class="terminal-text">
-                    <p><span class="prompt">$</span> <span class="command">./get_profile.sh</span></p>
-                    <p class="output">Developer with expertise in:</p>
-                    <p class="output"><span class="prompt">&gt;</span> Web Development</p>
-                    <p class="output"><span class="prompt">&gt;</span> UI/UX Design</p>
-                    <p class="output"><span class="prompt">&gt;</span> Cybersecurity Analyst</p>
-                    <br>
-                    <p><span class="prompt">$</span> <span class="command">cat contact.txt</span></p>
-                    <p class="output">GitHub: <a href="https://github.com/Zhoshk" target="_blank" class="link">github.com/Zhoshk</a> <span class="muted">· by Dhani</span></p>
-                    <br>
-                    <p><span class="prompt">$</span> <span class="output">_</span><span style="animation: blink 1s infinite;">|</span></p>
-                </div>
-            </div>
-
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View Projects</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-            </div>
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-lbl">Projects Completed</div>
         </div>
-    </section>
+      </div>
+      <div class="cta-row">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact"  class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <!-- Right terminal -->
+    <div class="hero-terminal fade-in" style="animation-delay:.2s">
+      <div class="term-header">
+        <span class="tdot tdot-r"></span>
+        <span class="tdot tdot-y"></span>
+        <span class="tdot tdot-g"></span>
+        <span class="term-title">dhani@sys:~</span>
+      </div>
+      <div class="term-body">
+        <p><span class="tp">dhani@sys:~$</span> <span class="tc">init_sequence --cyber-security</span></p>
+        <p class="to">[INFO] Loading modules...</p>
+        <p class="to">[INFO] Connecting to secure server...</p>
+        <br>
+        <p><span class="tp">dhani@sys:~$</span> <span class="tc">whoami</span></p>
+        <p class="to">dhani</p>
+        <br>
+        <p><span class="tp">dhani@sys:~$</span> <span class="tc">cat expertise.txt</span></p>
+        <p class="to">• Cybersecurity Analysis</p>
+        <p class="to">• UI/UX Design</p>
+        <p class="to">• Web Development</p>
+        <p class="to">• SIEM &amp; Log Analysis</p>
+        <br>
+        <p><span class="tp">dhani@sys:~$</span> <span class="tc">./status.sh</span></p>
+        <p class="to">[STATUS] All systems operational</p>
+        <br>
+        <p><span class="tp">dhani@sys:~$</span> <span class="cursor"></span></p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-container">
-            <div class="about-content fade-in">
-                <div class="about-text">
-                    <p class="about-intro">
-                        Hi! I'm <span class="highlight">Ramadhani Akbar Surya</span>, 
-                        a dedicated web developer and UI/UX designer with a growing 
-                        expertise in cybersecurity. I focus on crafting immersive, 
-                        user-centered digital experiences that are secure and resilient 
-                        by design.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">5+</div>
-                            <div class="stat-label">Years of Experience</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">10+</div>
-                            <div class="stat-label">Projects Completed</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="code-window">
-                        <div class="code-header">
-                            <div class="code-dot dot-red"></div>
-                            <div class="code-dot dot-yellow"></div>
-                            <div class="code-dot dot-green"></div>
-                            <span class="code-title">about.js</span>
-                        </div>
-                        <div class="code-content">
-<pre><code><span class="code-keyword">const</span> <span class="code-variable">professionalProfile</span> = {
-  <span class="code-property">name</span>: <span class="code-string">"Ramadhani Akbar Surya"</span>,
-  <span class="code-property">role</span>: <span class="code-string">"Full Stack Developer & SOC Enthusiast"</span>,
-  <span class="code-property">location</span>: <span class="code-string">"Internet"</span>,
-  <span class="code-property">interests</span>: [
-    <span class="code-string">"Web Development"</span>,
-    <span class="code-string">"UI/UX Design"</span>,
-    <span class="code-string">"Cybersecurity"</span>,  
+<!-- ── ABOUT ────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-tag">// about_me</div>
+    <h2 class="section-title">About Me</h2>
+    <p class="section-desc">A little bit about who I am and what I do.</p>
+
+    <div class="about-grid">
+      <div class="fade-in">
+        <p>Hi! I'm <span class="hl">Ramadhani Akbar Surya</span>, a dedicated web developer and UI/UX designer with a growing expertise in cybersecurity. I focus on crafting immersive, user-centered digital experiences that are secure and resilient by design.</p>
+        <p>Currently contributing to security operations by analyzing alerts, investigating phishing attempts, and supporting vulnerability remediation — with a <span class="hl">Secure-by-Design</span> mindset.</p>
+        <div class="about-stats">
+          <div class="a-stat">
+            <div class="a-stat-num">3+</div>
+            <div class="a-stat-lbl">Years of Experience</div>
+          </div>
+          <div class="a-stat">
+            <div class="a-stat-num">10+</div>
+            <div class="a-stat-lbl">Projects Completed</div>
+          </div>
+          <div class="a-stat">
+            <div class="a-stat-num">6+</div>
+            <div class="a-stat-lbl">Certifications</div>
+          </div>
+          <div class="a-stat">
+            <div class="a-stat-num">2+</div>
+            <div class="a-stat-lbl">Writeups Published</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img-wrap fade-in" style="animation-delay:.15s">
+        <img src="avatar.png" alt="Ramadhani Akbar Surya" style="width:100%;border-radius:16px;border:1px solid var(--border);box-shadow:0 0 30px rgba(0,255,140,.12);display:block;margin-bottom:1.5rem;" onerror="this.style.display='none'">
+        <div class="code-box">
+          <div class="code-box-header">
+            <span class="tdot tdot-r"></span>
+            <span class="tdot tdot-y"></span>
+            <span class="tdot tdot-g"></span>
+            <span class="code-box-title">about.js</span>
+          </div>
+          <div class="code-box-body">
+<pre><span class="ck">const</span> <span class="cv">profile</span> = {
+  <span class="cp">name</span>: <span class="cs">"Ramadhani Akbar Surya"</span>,
+  <span class="cp">role</span>: <span class="cs">"SOC Analyst & UI/UX Designer"</span>,
+  <span class="cp">location</span>: <span class="cs">"Indonesia"</span>,
+  <span class="cp">interests</span>: [
+    <span class="cs">"Cybersecurity"</span>,
+    <span class="cs">"UI/UX Design"</span>,
+    <span class="cs">"Web Development"</span>,
   ],
-  <span class="code-property">currentlyLearning</span>: [
-    <span class="code-string">"Advanced Cybersecurity Practices"</span>,
-    <span class="code-string">"Penetration Testing"</span>,
-    <span class="code-string">"Defensive Security Strategies"</span>
-
+  <span class="cp">learning</span>: [
+    <span class="cs">"Penetration Testing"</span>,
+    <span class="cs">"Defensive Security"</span>,
   ],
-    <span class="code-property">funFact</span>: 
-    <span class="code-string">"Secure-by-Design mindset"</span>
-};</code></pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <span class="cp">funFact</span>: <span class="cs">"Secure-by-Design mindset"</span>
+};</pre>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-category fade-in">
-                <h3>Frontend Development</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>HTML/CSS</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="90%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>JavaScript</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Python</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="80%"></div>
-                    </div>
-                </div>
-            </div>
+<!-- ── SKILLS ───────────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-tag">// skills_expertise</div>
+    <h2 class="section-title">Skills &amp; Expertise</h2>
+    <p class="section-desc">Technologies and disciplines I work with.</p>
+    <div class="skills-grid">
 
-            <div class="skill-category fade-in" style="animation-delay: 0.2s;">
-                <h3>UI/UX Design</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Figma</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Wireframing</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="85%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>User Research</span>
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="80%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="skill-category fade-in" style="animation-delay: 0.3s;">
-                <h3>Cybersecurity</h3>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Network Security</span>
-                        <span>70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="70%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>SIEM & Log Analysis</span>
-                        <span>75%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="75%"></div>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <div class="skill-name">
-                        <span>Incident Response</span>
-                        <span>70%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-width="70%"></div>
-                    </div>
-                </div>
-            </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-icon">🔐</div>
+        <h3>Cybersecurity</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">SIEM &amp; Log Analysis</span>
+          <span class="skill-tag">Security Research</span>
+          <span class="skill-tag">Network Security</span>
         </div>
-    </section>
+      </div>
 
-    <section id="experience">
-        <h2>Experience</h2>
-        <div class="exp-timeline-container">
-            <div class="exp-timeline-line"></div>
-
-            <div class="exp-timeline-item right fade-in" style="animation-delay: 0.2s;">
-                <div class="exp-timeline-dot"></div>
-                <div class="exp-timeline-content">
-                    <h3>Front-End Developer</h3>
-                    <div class="exp-timeline-date">2020 - 2022</div>
-                    <p>Specialized in creating immersive web experiences with advanced CSS animations and JavaScript interactions. Developed multiple creative projects showcasing interactive animations and experimental UI.</p>
-                </div>
-            </div>
-
-            <div class="exp-timeline-item left fade-in">
-                <div class="exp-timeline-dot"></div>
-                <div class="exp-timeline-content">
-                    <h3>UI/UX Designer</h3>
-                    <div class="exp-timeline-date">2023 - 2025</div>
-                    <p>Created complete redesigns for Klik Indomaret and Maxim apps, 
-                    leading UX Research and UI Design teams. Defined problem statements, 
-                    ideated solutions, and conducted structured user research and usability 
-                    testing. Built high-fidelity interactive prototypes in Figma using design 
-                    systems, auto layout, and plugins. Brainstormed with teams to deliver modern, 
-                    user-centered solutions.</p>
-                </div>
-            </div>
-
-            <div class="exp-timeline-item right fade-in" style="animation-delay: 0.4s;">
-                <div class="exp-timeline-dot"></div>
-                <div class="exp-timeline-content">
-                    <h3>Cybersecurity Analyst</h3>
-                    <div class="exp-timeline-date">2025 - Present</div>
-                    <p>Protecting digital environments through proactive monitoring, 
-                    threat detection, and incident analysis. Currently contributing 
-                    to security operations by analyzing alerts, investigating phishing 
-                    attempts, and supporting vulnerability remediation.</p>
-                </div>
-            </div>
+      <div class="skill-card fade-in" style="animation-delay:.05s">
+        <div class="skill-card-icon">🖥️</div>
+        <h3>Operating Systems</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Windows</span>
+          <span class="skill-tag">Kali Linux</span>
         </div>
-    </section>
+      </div>
 
-    <section id="certifications">
-        <h2>Certifications</h2>
-        <div class="cert-grid">
-            <div class="cert-card fade-in">
-                <div class="cert-icon">🎨</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">UI/UX Design</div>
-                        <div class="cert-issuer">MySkill</div>
-                    </div>
-                </div>
-                <h3>UI/UX Design Bootcamp</h3>
-                <p class="cert-description">
-                    Professional UI/UX Designer, Researcher, and Writer specializing 
-                    in user-centric digital solutions. Skilled in crafting high-fidelity 
-                    visual mockups and interactive prototypes in Figma to deliver seamless 
-                    application experiences.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2024</span>
-                    <a href="https://drive.google.com/file/d/1JKnOMOpHWeV4S1CQ76sL05N0NRwIROie/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
-
-            <div class="cert-card fade-in">
-                <div class="cert-icon">🎨</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">UI/UX Design</div>
-                        <div class="cert-issuer">MySkill</div>
-                    </div>
-                </div>
-                <h3>UI/UX Design Bootcamp</h3>
-                <p class="cert-description">
-                    Mastering the full UI/UX design cycle, from user research 
-                    to interactive prototyping in Figma. Expert in information 
-                    architecture, interface design, and validation through usability testing.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2025</span>
-                    <a href="https://drive.google.com/file/d/1mGvBL42tioKN8LyJliqY6f0x_obJj64N/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
-
-            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
-                <div class="cert-icon">🔐</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">Cybersecurity</div>
-                        <div class="cert-issuer">TryHackMe</div>
-                    </div>
-                </div>
-                <h3>Pre-Security Learning Path</h3>
-                <p class="cert-description">Learn the fundamentals of Networking,
-                    Computers, Operation Systems, Software, and Security to prepare 
-                    for a career in cybersecurity.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2025</span>
-                    <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UB39TO0HAW.pdf" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
-
-            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
-                <div class="cert-icon">🔐</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">Cybersecurity</div>
-                        <div class="cert-issuer">JagoanSiber</div>
-                    </div>
-                </div>
-                <h3>SOC for Beginner</h3>
-                <p class="cert-description">Learn the fundamentals of security 
-                    operations (SOC), log monitoring, network traffic analysis, 
-                    and incident management to detect and respond to cyber threats.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2026</span>
-                    <a href="https://drive.google.com/file/d/1RkHBThHozja8sID_nt1LREyxg1LI7FbD/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
-
-            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
-                <div class="cert-icon">🔐</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">Cybersecurity</div>
-                        <div class="cert-issuer">LetsDefend</div>
-                    </div>
-                </div>
-                <h3>Phishing Expert</h3>
-                <p class="cert-description">
-                    Expert in detecting and mitigating phishing attacks through in-depth analysis 
-                    of email headers, URLs, and malicious attachments. Proficient in identifying 
-                    social engineering, analyzing IoCs, and managing incidents from classification 
-                    to mitigation to strengthen security.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2026</span>
-                    <a href="https://app.letsdefend.io/my-rewards/detail/7759ddaea144488782ef332f6744d59a" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
-
-            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
-                <div class="cert-icon">🔐</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">Cybersecurity</div>
-                        <div class="cert-issuer">LetsDefend</div>
-                    </div>
-                </div>
-                <h3>Incident Handler</h3>
-                <p class="cert-description">
-                    Analyzed security alerts and Indicators of Compromise (IoC) 
-                    to assess incident severity and impact. Performed incident 
-                    handling activities including classification, escalation, 
-                    containment, and documentation. 
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2026</span>
-                    <a href="https://app.letsdefend.io/my-rewards/detail/54a70d6b-6640-4353-9689-3d6e0457e152" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
+      <div class="skill-card fade-in" style="animation-delay:.1s">
+        <div class="skill-card-icon">💻</div>
+        <h3>Programming</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">PHP</span>
         </div>
-    </section>
+      </div>
 
-    <section id="projects">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <h3>💻 Portfolio Site</h3>
-                <p>Personal portfolio built with HTML, CSS &amp; JavaScript featuring a terminal-inspired boot screen, glitch animations, and a cyberpunk aesthetic.</p>
-                <a href="#" class="project-link">View More &rarr;</a>
-            </div>
-            
-            <div class="project-card fade-in" style="animation-delay: 0.1s;">
-                <h3>🎨 Indomaret Apps</h3>
-                <p>
-                    Full redesign of the Klik Indomaret application UI. Led a team of UX Researchers,
-                    conducted usability testing, and delivered high-fidelity Figma prototypes.
-                </p>
-                <a href="https://www.figma.com/proto/heGPhZaOojOUtiu6s6z629/KELOMPOK-F-15?page-id=13%3A2146&type=design&node-id=111-545&viewport=1194%2C260%2C0.15&t=DoUwdg1zfRK56JLB-1&scaling=scale-down&starting-point-node-id=111%3A545" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
-            
-            <div class="project-card fade-in" style="animation-delay: 0.2s;">
-                <h3>🎨 Maxim Apps</h3>
-                <p>
-                    Complete UI/UX redesign of the Maxim ride-hailing app. Led a team of UI Designers
-                    and UX Researchers, from user research to final interactive prototype in Figma.
-                </p>
-                <a href="https://www.figma.com/proto/I009urqPkjvlNxb54o3m7p/2025_Team-7C--Copy-?page-id=20%3A3&node-id=205-6260&p=f&viewport=559%2C81%2C0.15&t=LrfP73ZBp07w04Qt-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=205%3A6292&show-proto-sidebar=1" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
-
-            <div class="project-card fade-in" style="animation-delay: 0.3s;">
-                <h3>🎨 SkillVul Projects</h3>
-                <p>
-                    UI/UX redesign of the Skillvul e-learning platform. Led a UX Research team,
-                    defined problem statements, and created an improved user-centered design system.
-                </p>
-                <a href="https://www.figma.com/proto/O35jupwlD5ohPH4xr0LI3n/Skillvul-Project-Case?node-id=1-4&viewport=412%2C386%2C0.41&t=i2QfjT7XOG761eDG-1&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
-
-            <div class="project-card fade-in" style="animation-delay: 0.4s;">
-                <h3>🎨 Thunder Landpage</h3>
-                <p>
-                    UI/UX redesign of the Thunder application landing page. Led a UX Research team
-                    and delivered a modern, visually engaging design with improved user flow.
-                </p>
-                <a href="https://www.figma.com/proto/yOHtyJcnyhINArYjBT8Nse/%E2%9A%A1Thunder-Landpage?node-id=15626-559&viewport=584%2C153%2C0.16&t=MWTUobrRE6QZL66F-1&scaling=scale-down-width&content-scaling=fixed&page-id=15626%3A558" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
-
-            <div class="project-card fade-in" style="animation-delay: 0.5s;">
-                <h3>🔐 CyberDefenders: WebStrike</h3>
-                <p>
-                    Network forensics writeup for the WebStrike challenge on CyberDefenders.
-                    Analyzed PCAP files to identify attacker behavior, exfiltration techniques, and IOCs.
-                </p>
-                <a href="https://medium.com/@ramadhaniras/webstrike-network-forensics-writeup-eb549f9a84ef" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
-
-            <div class="project-card fade-in" style="animation-delay: 0.6s;">
-                <h3>🔐 CyberDefenders: Tusk Infostealer</h3>
-                <p>
-                    Malware analysis writeup for the Tusk Infostealer challenge. Investigated
-                    infostealer behavior, credential harvesting techniques, and persistence mechanisms.
-                </p>
-                <a href="https://medium.com/@ramadhaniras/tusk-infostealer-cyberdefenders-writeup-81bf521b3b48" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
-
+      <div class="skill-card fade-in" style="animation-delay:.15s">
+        <div class="skill-card-icon">🌐</div>
+        <h3>Web Technologies</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">Web Security</span>
         </div>
-    </section>
+      </div>
 
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <div class="contact-container">
-            <div class="contact-grid">
-                <div class="contact-item fade-in">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <a href="mailto:ramadhaniras@gmail.com">ramadhaniras@gmail.com</a>
-                </div>
-
-                <div class="contact-item fade-in" style="animation-delay: 0.1s;">
-                    <div class="contact-icon">💼</div>
-                    <h3>GitHub</h3>
-                    <a href="https://github.com/Zhoshk" target="_blank">github.com/Zhoshk</a>
-                </div>
-
-                <div class="contact-item fade-in" style="animation-delay: 0.2s;">
-                    <div class="contact-icon">🔗</div>
-                    <h3>LinkedIn</h3>
-                    <a href="https://www.linkedin.com/in/ramadhaniakbarsurya" target="_blank">linkedin.com/in/ramadhaniakbarsurya</a>
-                </div>
-            </div>
-
-            <div class="contact-form fade-in">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label>$ name --input</label>
-                        <input type="text" id="formName" placeholder="dhani" required>
-                        <small class="field-sign">Signed by dhani</small>
-                    </div>
-                    <div class="form-group">
-                        <label>$ email --input</label>
-                        <input type="email" id="formEmail" placeholder="dhani@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>$ message --input</label>
-                        <textarea id="formMessage" placeholder="Your message here..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                    <div id="submitMessage" class="submit-message" style="display: none;"></div>
-                </form>
-            </div>
+      <div class="skill-card fade-in" style="animation-delay:.2s">
+        <div class="skill-card-icon">🎨</div>
+        <h3>UI/UX Design</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Wireframing</span>
+          <span class="skill-tag">User Research</span>
+          <span class="skill-tag">Prototyping</span>
         </div>
-    </section>
+      </div>
 
-    <footer>
-    <p>&copy; 2026 <span class="signature">dhani</span>. All rights reserved.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Made with ❤️ using HTML, CSS & JavaScript</p>
-        <p style="margin-top: 0.25rem; font-size: 0.8rem; color: #bbb;">Site signed and maintained by <strong>dhani</strong></p>
-    </footer>
+    </div>
+  </div>
+</section>
 
+<!-- ── EXPERIENCE ───────────────────────────────────────────────── -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-tag">// professional_experience</div>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-desc">My journey in cybersecurity, design, and development.</p>
 
-    <script src="src/js/main.js"></script>
-    <script>
-        // FORMSPREE INTEGRATION
-        // Setup: 
-        // 1. Go to https://formspree.io
-        // 2. Sign up and create new form
-        // 3. Copy FORM_ID
-        // 4. Replace 'YOUR_FORM_ID' below with actual FORM_ID
-        // 5. Test form submission
-        
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('formName').value;
-            const email = document.getElementById('formEmail').value;
-            const message = document.getElementById('formMessage').value;
-            const submitBtn = this.querySelector('.submit-btn');
-            const submitMessage = document.getElementById('submitMessage');
-            
-            // Store original button text
-            const originalBtnText = submitBtn.textContent;
-            
-            // Change button state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Send email using Formspree
-                const response = await fetch('https://formspree.io/f/mpqkellr', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        message: message
-                    })
-                });
-                
-                if (response.ok) {
-                    submitMessage.innerHTML = '✓ Message sent successfully!';
-                    submitMessage.style.color = '#00FF8C';
-                    submitMessage.style.display = 'block';
-                    
-                    // Reset form
-                    this.reset();
-                    
-                    // Hide message after 3 seconds
-                    setTimeout(() => {
-                        submitMessage.style.display = 'none';
-                    }, 3000);
-                } else {
-                    submitMessage.innerHTML = '✗ Failed to send message. Please check Form ID.';
-                    submitMessage.style.color = '#FF3366';
-                    submitMessage.style.display = 'block';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                submitMessage.innerHTML = '✗ Error sending message. Check console.';
-                submitMessage.style.color = '#FF3366';
-                submitMessage.style.display = 'block';
-            } finally {
-                // Restore button state
-                submitBtn.textContent = originalBtnText;
-                submitBtn.disabled = false;
-            }
-        });
-    </script>
+    <div class="exp-timeline">
+
+      <!-- Item 1 -->
+      <div class="exp-item fade-in">
+        <div class="exp-card">
+          <h3>Cybersecurity Analyst</h3>
+          <div class="exp-date">2025 – Present · Remote</div>
+          <p>Protecting digital environments through proactive monitoring, threat detection, and incident analysis. Contributing to security operations by analyzing alerts, investigating phishing attempts, and supporting vulnerability remediation.</p>
+          <div class="exp-tags">
+            <span class="exp-tag">SIEM</span>
+            <span class="exp-tag">Incident Response</span>
+            <span class="exp-tag">Phishing Analysis</span>
+            <span class="exp-tag">Log Analysis</span>
+          </div>
+        </div>
+        <div class="exp-dot"></div>
+        <div class="exp-empty"></div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="exp-item fade-in">
+        <div class="exp-empty"></div>
+        <div class="exp-dot"></div>
+        <div class="exp-card">
+          <h3>UI/UX Designer</h3>
+          <div class="exp-date">2023 – 2025 · Remote</div>
+          <p>Created complete redesigns for Klik Indomaret and Maxim apps, leading UX Research and UI Design teams. Defined problem statements, ideated solutions, and conducted structured user research and usability testing. Built high-fidelity interactive prototypes in Figma using design systems, auto layout, and plugins.</p>
+          <div class="exp-tags">
+            <span class="exp-tag">Figma</span>
+            <span class="exp-tag">UX Research</span>
+            <span class="exp-tag">Usability Testing</span>
+            <span class="exp-tag">Prototyping</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="exp-item fade-in">
+        <div class="exp-card">
+          <h3>Front-End Developer</h3>
+          <div class="exp-date">2020 – 2022 · Remote</div>
+          <p>Specialized in creating immersive web experiences with advanced CSS animations and JavaScript interactions. Developed multiple creative projects showcasing interactive animations and experimental UI.</p>
+          <div class="exp-tags">
+            <span class="exp-tag">HTML/CSS</span>
+            <span class="exp-tag">JavaScript</span>
+            <span class="exp-tag">CSS Animations</span>
+          </div>
+        </div>
+        <div class="exp-dot"></div>
+        <div class="exp-empty"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ──────────────────────────────────────────────────── -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="section-tag">// featured_projects</div>
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-desc">Level up your knowledge with my latest creations.</p>
+    <div class="proj-grid">
+
+      <div class="proj-card fade-in">
+        <div class="proj-lvl">LVL 42 · Personal</div>
+        <h3>💻 Portfolio Site</h3>
+        <p>Personal portfolio built with HTML, CSS &amp; JavaScript featuring a terminal-inspired boot screen, glitch animations, and a cyberpunk aesthetic.</p>
+        <div class="proj-xp"><div class="proj-xp-fill" style="width:85%"></div></div>
+        <div class="proj-tags"><span class="proj-tag">HTML/CSS</span><span class="proj-tag">JavaScript</span><span class="proj-tag">Terminal UI</span></div>
+        <a href="#" class="proj-link">View More →</a>
+      </div>
+
+      <div class="proj-card fade-in" style="animation-delay:.05s">
+        <div class="proj-lvl">LVL 38 · UI/UX</div>
+        <h3>🎨 Indomaret Apps</h3>
+        <p>Full redesign of the Klik Indomaret application UI. Led a team of UX Researchers, conducted usability testing, and delivered high-fidelity Figma prototypes.</p>
+        <div class="proj-xp"><div class="proj-xp-fill" style="width:80%"></div></div>
+        <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">UX Research</span><span class="proj-tag">Prototyping</span></div>
+        <a href="https://www.figma.com/proto/heGPhZaOojOUtiu6s6z629/KELOMPOK-F-15?page-id=13%3A2146&type=design&node-id=111-545&viewport=1194%2C260%2C0.15&t=DoUwdg1zfRK56JLB-1&scaling=scale-down&starting-point-node-id=111%3A545" target="_blank" class="proj-link">View Prototype →</a>
+      </div>
+
+      <div class="proj-card fade-in" style="animation-delay:.1s">
+        <div class="proj-lvl">LVL 36 · UI/UX</div>
+        <h3>🎨 Maxim Apps</h3>
+        <p>Complete UI/UX redesign of the Maxim ride-hailing app. Led a team of UI Designers and UX Researchers, from user research to final interactive prototype in Figma.</p>
+        <div class="proj-xp"><div class="proj-xp-fill" style="width:78%"></div></div>
+        <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">UI Design</span><span class="proj-tag">UX Research</span></div>
+        <a href="https://www.figma.com/proto/I009urqPkjvlNxb54o3m7p/2025_Team-7C--Copy-?page-id=20%3A3&node-id=205-6260&p=f&viewport=559%2C81%2C0.15&t=LrfP73ZBp07w04Qt-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=205%3A6292&show-proto-sidebar=1" target="_blank" class="proj-link">View Prototype →</a>
+      </div>
+
+      <div class="proj-card fade-in" style="animation-delay:.15s">
+        <div class="proj-lvl">LVL 34 · UI/UX</div>
+        <h3>🎨 SkillVul Projects</h3>
+        <p>UI/UX redesign of the Skillvul e-learning platform. Led a UX Research team, defined problem statements, and created an improved user-centered design system.</p>
+        <div class="proj-xp"><div class="proj-xp-fill" style="width:74%"></div></div>
+        <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">Design System</span><span class="proj-tag">UX Research</span></div>
+        <a href="https://www.figma.com/proto/O35jupwlD5ohPH4xr0LI3n/Skillvul-Project-Case?node-id=1-4&viewport=412%2C386%2C0.41&t=i2QfjT7XOG761eDG-1&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1" target="_blank" class="proj-link">View Prototype →</a>
+      </div>
+
+      <div class="proj-card fade-in" style="animation-delay:.2s">
+        <div class="proj-lvl">LVL 32 · UI/UX</div>
+        <h3>🎨 Thunder Landpage</h3>
+        <p>UI/UX redesign of the Thunder application landing page. Led a UX Research team and delivered a modern, visually engaging design with improved user flow.</p>
+        <div class="proj-xp"><div class="proj-xp-fill" style="width:70%"></div></div>
+        <div class="proj-tags"><span class="proj-tag">Figma</span><span class="proj-tag">Landing Page</span><span class="proj-tag">UX Research</span></div>
+        <a href="https://www.figma.com/proto/yOHtyJcnyhINArYjBT8Nse/%E2%9A%A1Thunder-Landpage?node-id=15626-559&viewport=584%2C153%2C0.16&t=MWTUobrRE6QZL66F-1&scaling=scale-down-width&content-scaling=fixed&page-id=15626%3A558" target="_blank" class="proj-link">View Prototype →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG / WRITEUPS ───────────────────────────────────────────── -->
+<section id="blog">
+  <div class="section-inner">
+    <div class="section-tag">// blog_writeups</div>
+    <h2 class="section-title">Blog &amp; Writeups</h2>
+    <p class="section-desc">Cybersecurity writeups and technical analysis posts.</p>
+    <div class="blog-grid">
+
+      <div class="blog-card fade-in">
+        <div class="blog-top">
+          <span class="blog-cat">🔐 Network Forensics</span>
+          <span class="blog-year">2025</span>
+        </div>
+        <div class="blog-body">
+          <h3>CyberDefenders: WebStrike Writeup</h3>
+          <p>Network forensics writeup for the WebStrike challenge on CyberDefenders. Analyzed PCAP files to identify attacker behavior, exfiltration techniques, and Indicators of Compromise (IOCs).</p>
+          <a href="https://medium.com/@ramadhaniras/webstrike-network-forensics-writeup-eb549f9a84ef" target="_blank" class="blog-link">Read on Medium →</a>
+        </div>
+      </div>
+
+      <div class="blog-card fade-in" style="animation-delay:.1s">
+        <div class="blog-top">
+          <span class="blog-cat">🔐 Malware Analysis</span>
+          <span class="blog-year">2025</span>
+        </div>
+        <div class="blog-body">
+          <h3>CyberDefenders: Tusk Infostealer Writeup</h3>
+          <p>Malware analysis writeup for the Tusk Infostealer challenge. Investigated infostealer behavior, credential harvesting techniques, and persistence mechanisms used by the malware.</p>
+          <a href="https://medium.com/@ramadhaniras/tusk-infostealer-cyberdefenders-writeup-81bf521b3b48" target="_blank" class="blog-link">Read on Medium →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag">// get_in_touch</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-desc">Have a project or opportunity? Let's talk.</p>
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <a href="mailto:ramadhaniras@gmail.com" class="contact-card">
+          <span class="cc-icon">📧</span>
+          <div><div class="cc-label">Email</div><div class="cc-value">ramadhaniras@gmail.com</div></div>
+        </a>
+        <a href="https://github.com/Zhoshk" target="_blank" class="contact-card">
+          <span class="cc-icon">💼</span>
+          <div><div class="cc-label">GitHub</div><div class="cc-value">github.com/Zhoshk</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/ramadhaniakbarsurya" target="_blank" class="contact-card">
+          <span class="cc-icon">🔗</span>
+          <div><div class="cc-label">LinkedIn</div><div class="cc-value">linkedin.com/in/ramadhaniakbarsurya</div></div>
+        </a>
+        <a href="https://medium.com/@ramadhaniras" target="_blank" class="contact-card">
+          <span class="cc-icon">✍️</span>
+          <div><div class="cc-label">Medium</div><div class="cc-value">medium.com/@ramadhaniras</div></div>
+        </a>
+      </div>
+      <div class="contact-form-box fade-in">
+        <form id="contactForm">
+          <div class="cf-group">
+            <label class="cf-label">$ name --input</label>
+            <input class="cf-input" type="text" id="cfName" placeholder="dhani" required />
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">$ email --input</label>
+            <input class="cf-input" type="email" id="cfEmail" placeholder="dhani@example.com" required />
+          </div>
+          <div class="cf-group">
+            <label class="cf-label">$ message --input</label>
+            <textarea class="cf-textarea" id="cfMsg2" placeholder="Your message here..." required></textarea>
+          </div>
+          <button type="submit" class="cf-btn">Send Message</button>
+          <div id="cfMsg"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo">&gt;_<span style="color:var(--cyan)">dhani</span>.sh</div>
+        <p>Cybersecurity analyst, UI/UX designer, and web developer from Indonesia. Building secure, user-centered digital experiences.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://github.com/Zhoshk" target="_blank">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/ramadhaniakbarsurya" target="_blank">LinkedIn</a></li>
+          <li><a href="https://medium.com/@ramadhaniras" target="_blank">Medium</a></li>
+          <li><a href="mailto:ramadhaniras@gmail.com">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ramadhani Akbar Surya (dhani). All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/Zhoshk" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/ramadhaniakbarsurya" target="_blank">LinkedIn</a>
+        <a href="https://medium.com/@ramadhaniras" target="_blank">Medium</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Boot screen
+document.addEventListener('DOMContentLoaded', () => {
+  const boot = document.getElementById('bootScreen');
+  const skip = () => { boot.classList.add('fade-out'); setTimeout(() => boot.style.display='none', 500); };
+  setTimeout(skip, 6000);
+  document.addEventListener('keydown', skip, { once: true });
+  boot.addEventListener('click', skip, { once: true });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href !== '#') {
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if (el) window.scrollTo({ top: el.offsetTop - 72, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Intersection observer – fade in
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.fade-in, .lazy-section').forEach(el => io.observe(el));
+});
+
+// Hamburger
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// Contact form — Formspree
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn  = this.querySelector('.cf-btn');
+  const msg  = document.getElementById('cfMsg');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/mpqkellr', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:    document.getElementById('cfName').value,
+        email:   document.getElementById('cfEmail').value,
+        message: document.getElementById('cfMsg2').value
+      })
+    });
+    if (res.ok) {
+      msg.textContent = '✓ Message sent successfully!';
+      msg.style.cssText = 'display:block;color:#00FF8C;background:rgba(0,255,140,.08);';
+      this.reset();
+    } else {
+      msg.textContent = '✗ Failed to send. Please try again.';
+      msg.style.cssText = 'display:block;color:#FF3366;background:rgba(255,51,102,.08);';
+    }
+  } catch {
+    msg.textContent = '✗ Network error. Please try again.';
+    msg.style.cssText = 'display:block;color:#FF3366;background:rgba(255,51,102,.08);';
+  } finally {
+    btn.textContent = 'Send Message'; btn.disabled = false;
+    setTimeout(() => msg.style.display='none', 4000);
+  }
+});
+</script>
 </body>
 </html>
-
-<!-- End of file -->
