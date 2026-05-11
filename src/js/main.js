@@ -1,33 +1,63 @@
-// signed: serozr
+// signed: dhani
 /*
     File: main.js
     Purpose: handles boot screen, observers and UI interactions
-    Signed by: serozr
+    Signed by: dhani
 */
-// Boot Screen Animation
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Boot Screen
     const bootScreen = document.getElementById('bootScreen');
-    
-    // Hide boot screen after animation completes
-    setTimeout(() => {
-        bootScreen.classList.add('fade-out');
-        setTimeout(() => {
-            bootScreen.style.display = 'none';
-        }, 500);
-    }, 6000); // 6 seconds total boot time
-    
-    // Allow skipping with any key press or click
+
     const skipBoot = () => {
         bootScreen.classList.add('fade-out');
         setTimeout(() => {
             bootScreen.style.display = 'none';
         }, 500);
     };
-    
+
+    setTimeout(skipBoot, 6000);
     document.addEventListener('keydown', skipBoot, { once: true });
     bootScreen.addEventListener('click', skipBoot, { once: true });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href !== '#') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+
+    // Lazy Section Observer
+    const lazyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                lazyObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+        section.classList.add('lazy-section');
+        lazyObserver.observe(section);
+    });
+
 });
 
+// Fade-in on Scroll
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
@@ -49,6 +79,7 @@ document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
 });
 
+// Skill Progress Bars
 const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -68,6 +99,7 @@ document.querySelectorAll('.skill-category').forEach(category => {
     skillObserver.observe(category);
 });
 
+// Mobile Menu
 function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
     navLinks.classList.toggle('active');
@@ -78,40 +110,7 @@ function closeMenu() {
     navLinks.classList.remove('active');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href !== '#') {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const offset = 80;
-                    const targetPosition = target.offsetTop - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    const lazyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                lazyObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('section').forEach(section => {
-        section.classList.add('lazy-section');
-        lazyObserver.observe(section);
-    });
-});
-
+// Scroll Performance
 let scrollTimeout;
 window.addEventListener('scroll', () => {
     if (scrollTimeout) {
@@ -122,4 +121,4 @@ window.addEventListener('scroll', () => {
     }, 150);
 }, { passive: true });
 
-// End of file - signed: serozr
+// End of file
