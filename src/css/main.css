@@ -1654,3 +1654,187 @@ footer .signature {
     color: #00FF8C;
     gap: .6rem;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE IMPROVEMENTS — signed: dhani
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Base mobile typography ─────────────────────────────── */
+@media (max-width: 480px) {
+    h1 { font-size: 2rem !important; }
+    h2 { font-size: 1.6rem !important; }
+
+    body {
+        font-size: 14px;
+        overflow-x: hidden;
+    }
+
+    section {
+        padding: 3rem 1.25rem;
+    }
+}
+
+/* ── Hero: terminal window mobile ───────────────────────── */
+@media (max-width: 768px) {
+    .hero {
+        padding: 5rem 1.25rem 2.5rem;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    .terminal-window {
+        font-size: 0.78rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .terminal-text p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* ── About: stats grid 2-col on small screens ───────────── */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+    }
+
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .code-window {
+        font-size: 0.78rem;
+        overflow-x: auto;
+    }
+
+    .code-content code {
+        font-size: 0.75rem;
+    }
+}
+
+/* ── Skills grid: 1 col on mobile ───────────────────────── */
+@media (max-width: 600px) {
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .skill-category {
+        padding: 1.25rem;
+    }
+}
+
+/* ── Projects & Blog grid: 1 col on mobile ──────────────── */
+@media (max-width: 600px) {
+    .projects-grid,
+    .blog-grid,
+    .cert-grid,
+    .certifications-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem;
+    }
+
+    .project-card,
+    .blog-card,
+    .cert-card {
+        padding: 1.25rem;
+    }
+}
+
+/* ── Experience timeline: cleaner on mobile ─────────────── */
+@media (max-width: 768px) {
+    .exp-timeline-container {
+        padding-left: 0;
+    }
+
+    .exp-timeline-item.left,
+    .exp-timeline-item.right {
+        padding-left: 1rem;
+        padding-right: 0;
+        margin-left: 1rem;
+    }
+}
+
+/* ── Contact form: full width on mobile ─────────────────── */
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 0;
+    }
+
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem;
+    }
+
+    .contact-form {
+        padding: 1.25rem;
+    }
+
+    .submit-btn {
+        padding: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ── Boot screen on tiny screens ────────────────────────── */
+@media (max-width: 480px) {
+    .boot-content {
+        padding: 0.75rem;
+    }
+
+    .ascii-art {
+        font-size: 0.38rem !important;
+        line-height: 1.1;
+    }
+
+    .boot-terminal p {
+        font-size: 0.78rem;
+    }
+}
+
+/* ── Nav: prevent overflow ──────────────────────────────── */
+@media (max-width: 768px) {
+    nav {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+}
+
+/* ── Prevent horizontal scroll globally ─────────────────── */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
