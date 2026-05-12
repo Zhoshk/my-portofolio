@@ -1627,3 +1627,30 @@ footer .signature {
 }
 
 /* End of file - signed: serozr */
+
+/* ── Blog additions ─────────────────────────────────────────── */
+.blog-label {
+    color: #00FF8C;
+    font-size: .78rem;
+    letter-spacing: .06em;
+    font-weight: bold;
+}
+.blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.blog-link {
+    color: #00D9FF;
+    font-size: .85rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    transition: color .2s, gap .2s;
+}
+.blog-link:hover {
+    color: #00FF8C;
+    gap: .6rem;
+}
