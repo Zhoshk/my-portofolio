@@ -490,186 +490,208 @@
 
     <section id="certifications">
         <h2>Certifications</h2>
-        <div class="cert-grid">
-            <div class="cert-card fade-in">
-                <div class="cert-icon">🎨</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">UI/UX Design</div>
-                        <div class="cert-issuer">MySkill</div>
-                    </div>
-                </div>
-                <h3>UI/UX Design Bootcamp</h3>
-                <p class="cert-description">
-                    Professional UI/UX Designer, Researcher, and Writer specializing 
-                    in user-centric digital solutions. Skilled in crafting high-fidelity 
-                    visual mockups and interactive prototypes in Figma to deliver seamless 
-                    application experiences.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2024</span>
-                    <a href="https://drive.google.com/file/d/1JKnOMOpHWeV4S1CQ76sL05N0NRwIROie/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
+        <div class="carousel-wrapper">
+            <button class="carousel-btn carousel-prev" onclick="scrollCarousel('certCarousel', -1)" aria-label="Previous">&#8249;</button>
+            <div class="carousel-track" id="certCarousel">
 
-            <div class="cert-card fade-in">
-                <div class="cert-icon">🎨</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">UI/UX Design</div>
-                        <div class="cert-issuer">MySkill</div>
+                <!-- CARD 1: Pre-Security (shown first) -->
+                <div class="cert-card carousel-card">
+                    <div class="cert-icon">🔐</div>
+                    <div class="cert-badge">
+                        <div class="cert-badge-inner">
+                            <div class="cert-title">Cybersecurity</div>
+                            <div class="cert-issuer">TryHackMe</div>
+                        </div>
+                    </div>
+                    <h3>Pre-Security Learning Path</h3>
+                    <p class="cert-description">Learn the fundamentals of Networking,
+                        Computers, Operation Systems, Software, and Security to prepare
+                        for a career in cybersecurity.
+                    </p>
+                    <div class="cert-footer">
+                        <span class="cert-date">2025</span>
+                        <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UB39TO0HAW.pdf" target="_blank" class="cert-link">Verify &rarr;</a>
                     </div>
                 </div>
-                <h3>UI/UX Design Bootcamp</h3>
-                <p class="cert-description">
-                    Mastering the full UI/UX design cycle, from user research 
-                    to interactive prototyping in Figma. Expert in information 
-                    architecture, interface design, and validation through usability testing.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2025</span>
-                    <a href="https://drive.google.com/file/d/1mGvBL42tioKN8LyJliqY6f0x_obJj64N/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
 
-            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
-                <div class="cert-icon">🔐</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">Cybersecurity</div>
-                        <div class="cert-issuer">TryHackMe</div>
+                <!-- CARD 2: Phishing Expert (shown first) -->
+                <div class="cert-card carousel-card">
+                    <div class="cert-icon">🔐</div>
+                    <div class="cert-badge">
+                        <div class="cert-badge-inner">
+                            <div class="cert-title">Cybersecurity</div>
+                            <div class="cert-issuer">LetsDefend</div>
+                        </div>
+                    </div>
+                    <h3>Phishing Expert</h3>
+                    <p class="cert-description">
+                        Expert in detecting and mitigating phishing attacks through in-depth analysis
+                        of email headers, URLs, and malicious attachments. Proficient in identifying
+                        social engineering, analyzing IoCs, and managing incidents.
+                    </p>
+                    <div class="cert-footer">
+                        <span class="cert-date">2026</span>
+                        <a href="https://app.letsdefend.io/my-rewards/detail/7759ddaea144488782ef332f6744d59a" target="_blank" class="cert-link">Verify &rarr;</a>
                     </div>
                 </div>
-                <h3>Pre-Security Learning Path</h3>
-                <p class="cert-description">Learn the fundamentals of Networking,
-                    Computers, Operation Systems, Software, and Security to prepare 
-                    for a career in cybersecurity.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2025</span>
-                    <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UB39TO0HAW.pdf" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
 
-            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
-                <div class="cert-icon">🔐</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">Cybersecurity</div>
-                        <div class="cert-issuer">JagoanSiber</div>
+                <!-- CARD 3: Incident Handler (shown first) -->
+                <div class="cert-card carousel-card">
+                    <div class="cert-icon">🔐</div>
+                    <div class="cert-badge">
+                        <div class="cert-badge-inner">
+                            <div class="cert-title">Cybersecurity</div>
+                            <div class="cert-issuer">LetsDefend</div>
+                        </div>
+                    </div>
+                    <h3>Incident Handler</h3>
+                    <p class="cert-description">
+                        Analyzed security alerts and Indicators of Compromise (IoC)
+                        to assess incident severity and impact. Performed incident
+                        handling including classification, escalation, containment, and documentation.
+                    </p>
+                    <div class="cert-footer">
+                        <span class="cert-date">2026</span>
+                        <a href="https://app.letsdefend.io/my-rewards/detail/54a70d6b-6640-4353-9689-3d6e0457e152" target="_blank" class="cert-link">Verify &rarr;</a>
                     </div>
                 </div>
-                <h3>SOC for Beginner</h3>
-                <p class="cert-description">Learn the fundamentals of security 
-                    operations (SOC), log monitoring, network traffic analysis, 
-                    and incident management to detect and respond to cyber threats.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2026</span>
-                    <a href="https://drive.google.com/file/d/1RkHBThHozja8sID_nt1LREyxg1LI7FbD/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
 
-            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
-                <div class="cert-icon">🔐</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">Cybersecurity</div>
-                        <div class="cert-issuer">LetsDefend</div>
+                <!-- CARD 4: SOC for Beginner -->
+                <div class="cert-card carousel-card">
+                    <div class="cert-icon">🔐</div>
+                    <div class="cert-badge">
+                        <div class="cert-badge-inner">
+                            <div class="cert-title">Cybersecurity</div>
+                            <div class="cert-issuer">JagoanSiber</div>
+                        </div>
+                    </div>
+                    <h3>SOC for Beginner</h3>
+                    <p class="cert-description">Learn the fundamentals of security
+                        operations (SOC), log monitoring, network traffic analysis,
+                        and incident management to detect and respond to cyber threats.
+                    </p>
+                    <div class="cert-footer">
+                        <span class="cert-date">2026</span>
+                        <a href="https://drive.google.com/file/d/1RkHBThHozja8sID_nt1LREyxg1LI7FbD/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
                     </div>
                 </div>
-                <h3>Phishing Expert</h3>
-                <p class="cert-description">
-                    Expert in detecting and mitigating phishing attacks through in-depth analysis 
-                    of email headers, URLs, and malicious attachments. Proficient in identifying 
-                    social engineering, analyzing IoCs, and managing incidents from classification 
-                    to mitigation to strengthen security.
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2026</span>
-                    <a href="https://app.letsdefend.io/my-rewards/detail/7759ddaea144488782ef332f6744d59a" target="_blank" class="cert-link">Verify &rarr;</a>
-                </div>
-            </div>
 
-            <div class="cert-card fade-in" style="animation-delay: 0.1s;">
-                <div class="cert-icon">🔐</div>
-                <div class="cert-badge">
-                    <div class="cert-badge-inner">
-                        <div class="cert-title">Cybersecurity</div>
-                        <div class="cert-issuer">LetsDefend</div>
+                <!-- CARD 5: UI/UX Bootcamp 2024 -->
+                <div class="cert-card carousel-card">
+                    <div class="cert-icon">🎨</div>
+                    <div class="cert-badge">
+                        <div class="cert-badge-inner">
+                            <div class="cert-title">UI/UX Design</div>
+                            <div class="cert-issuer">MySkill</div>
+                        </div>
+                    </div>
+                    <h3>UI/UX Design Bootcamp</h3>
+                    <p class="cert-description">
+                        Professional UI/UX Designer, Researcher, and Writer specializing
+                        in user-centric digital solutions. Skilled in crafting high-fidelity
+                        visual mockups and interactive prototypes in Figma.
+                    </p>
+                    <div class="cert-footer">
+                        <span class="cert-date">2024</span>
+                        <a href="https://drive.google.com/file/d/1JKnOMOpHWeV4S1CQ76sL05N0NRwIROie/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
                     </div>
                 </div>
-                <h3>Incident Handler</h3>
-                <p class="cert-description">
-                    Analyzed security alerts and Indicators of Compromise (IoC) 
-                    to assess incident severity and impact. Performed incident 
-                    handling activities including classification, escalation, 
-                    containment, and documentation. 
-                </p>
-                <div class="cert-footer">
-                    <span class="cert-date">2026</span>
-                    <a href="https://app.letsdefend.io/my-rewards/detail/54a70d6b-6640-4353-9689-3d6e0457e152" target="_blank" class="cert-link">Verify &rarr;</a>
+
+                <!-- CARD 6: UI/UX Bootcamp 2025 -->
+                <div class="cert-card carousel-card">
+                    <div class="cert-icon">🎨</div>
+                    <div class="cert-badge">
+                        <div class="cert-badge-inner">
+                            <div class="cert-title">UI/UX Design</div>
+                            <div class="cert-issuer">MySkill</div>
+                        </div>
+                    </div>
+                    <h3>UI/UX Design Bootcamp</h3>
+                    <p class="cert-description">
+                        Mastering the full UI/UX design cycle, from user research
+                        to interactive prototyping in Figma. Expert in information
+                        architecture, interface design, and validation through usability testing.
+                    </p>
+                    <div class="cert-footer">
+                        <span class="cert-date">2025</span>
+                        <a href="https://drive.google.com/file/d/1mGvBL42tioKN8LyJliqY6f0x_obJj64N/view?usp=sharing" target="_blank" class="cert-link">Verify &rarr;</a>
+                    </div>
                 </div>
+
             </div>
+            <button class="carousel-btn carousel-next" onclick="scrollCarousel('certCarousel', 1)" aria-label="Next">&#8250;</button>
         </div>
+        <div class="carousel-dots" id="certDots"></div>
     </section>
 
     <section id="projects">
         <h2>Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <h3>💻 Portfolio Site</h3>
-                <p>Personal portfolio built with HTML, CSS &amp; JavaScript featuring a terminal-inspired boot screen, glitch animations, and a cyberpunk aesthetic.</p>
-                <a href="#" class="project-link">View More &rarr;</a>
-            </div>
-            
-            <div class="project-card fade-in" style="animation-delay: 0.1s;">
-                <h3>🎨 Indomaret Apps</h3>
-                <p>
-                    Full redesign of the Klik Indomaret application UI. Led a team of UX Researchers,
-                    conducted usability testing, and delivered high-fidelity Figma prototypes.
-                </p>
-                <a href="https://www.figma.com/proto/heGPhZaOojOUtiu6s6z629/KELOMPOK-F-15?page-id=13%3A2146&type=design&node-id=111-545&viewport=1194%2C260%2C0.15&t=DoUwdg1zfRK56JLB-1&scaling=scale-down&starting-point-node-id=111%3A545" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
-            
-            <div class="project-card fade-in" style="animation-delay: 0.2s;">
-                <h3>🎨 Maxim Apps</h3>
-                <p>
-                    Complete UI/UX redesign of the Maxim ride-hailing app. Led a team of UI Designers
-                    and UX Researchers, from user research to final interactive prototype in Figma.
-                </p>
-                <a href="https://www.figma.com/proto/I009urqPkjvlNxb54o3m7p/2025_Team-7C--Copy-?page-id=20%3A3&node-id=205-6260&p=f&viewport=559%2C81%2C0.15&t=LrfP73ZBp07w04Qt-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=205%3A6292&show-proto-sidebar=1" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
+        <div class="carousel-wrapper">
+            <button class="carousel-btn carousel-prev" onclick="scrollCarousel('projCarousel', -1)" aria-label="Previous">&#8249;</button>
+            <div class="carousel-track" id="projCarousel">
 
-            <div class="project-card fade-in" style="animation-delay: 0.3s;">
-                <h3>🎨 SkillVul Projects</h3>
-                <p>
-                    UI/UX redesign of the Skillvul e-learning platform. Led a UX Research team,
-                    defined problem statements, and created an improved user-centered design system.
-                </p>
-                <a href="https://www.figma.com/proto/O35jupwlD5ohPH4xr0LI3n/Skillvul-Project-Case?node-id=1-4&viewport=412%2C386%2C0.41&t=i2QfjT7XOG761eDG-1&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
+                <!-- CARD 1: Portfolio Site (shown first) -->
+                <div class="project-card carousel-card">
+                    <h3>💻 Portfolio Site</h3>
+                    <p>Personal portfolio built with HTML, CSS &amp; JavaScript featuring a terminal-inspired boot screen, glitch animations, and a cyberpunk aesthetic.</p>
+                    <a href="#" class="project-link">View More &rarr;</a>
+                </div>
 
-            <div class="project-card fade-in" style="animation-delay: 0.4s;">
-                <h3>🎨 Thunder Landpage</h3>
-                <p>
-                    UI/UX redesign of the Thunder application landing page. Led a UX Research team
-                    and delivered a modern, visually engaging design with improved user flow.
-                </p>
-                <a href="https://www.figma.com/proto/yOHtyJcnyhINArYjBT8Nse/%E2%9A%A1Thunder-Landpage?node-id=15626-559&viewport=584%2C153%2C0.16&t=MWTUobrRE6QZL66F-1&scaling=scale-down-width&content-scaling=fixed&page-id=15626%3A558" target="_blank" class="project-link">View More &rarr;</a>
-            </div>
+                <!-- CARD 2: Maxim Apps (shown first) -->
+                <div class="project-card carousel-card">
+                    <h3>🎨 Maxim Apps</h3>
+                    <p>
+                        Complete UI/UX redesign of the Maxim ride-hailing app. Led a team of UI Designers
+                        and UX Researchers, from user research to final interactive prototype in Figma.
+                    </p>
+                    <a href="https://www.figma.com/proto/I009urqPkjvlNxb54o3m7p/2025_Team-7C--Copy-?page-id=20%3A3&node-id=205-6260&p=f&viewport=559%2C81%2C0.15&t=LrfP73ZBp07w04Qt-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=205%3A6292&show-proto-sidebar=1" target="_blank" class="project-link">View More &rarr;</a>
+                </div>
 
-            <div class="project-card fade-in" style="animation-delay: 0.5s;">
-                <h3>🍽️ Kantin Mas Wawan</h3>
-                <p>
-                    Digital ordering system for Kantin Mas Wawan at Gade Tower IT Security.
-                    Built with HTML, CSS &amp; JavaScript — features a full menu with categories,
-                    shopping cart, QRIS payment, and queue number system.
-                </p>
-                <a href="https://kantin-maswawan.vercel.app/" target="_blank" class="project-link">View Site &rarr;</a>
-            </div>
+                <!-- CARD 3: Kantin Mas Wawan (shown first) -->
+                <div class="project-card carousel-card">
+                    <h3>🍽️ Kantin Mas Wawan</h3>
+                    <p>
+                        Digital ordering system for Kantin Mas Wawan at Gade Tower IT Security.
+                        Built with HTML, CSS &amp; JavaScript — features a full menu with categories,
+                        shopping cart, QRIS payment, and queue number system.
+                    </p>
+                    <a href="https://kantin-maswawan.vercel.app/" target="_blank" class="project-link">View Site &rarr;</a>
+                </div>
 
+                <!-- CARD 4: Indomaret Apps -->
+                <div class="project-card carousel-card">
+                    <h3>🎨 Indomaret Apps</h3>
+                    <p>
+                        Full redesign of the Klik Indomaret application UI. Led a team of UX Researchers,
+                        conducted usability testing, and delivered high-fidelity Figma prototypes.
+                    </p>
+                    <a href="https://www.figma.com/proto/heGPhZaOojOUtiu6s6z629/KELOMPOK-F-15?page-id=13%3A2146&type=design&node-id=111-545&viewport=1194%2C260%2C0.15&t=DoUwdg1zfRK56JLB-1&scaling=scale-down&starting-point-node-id=111%3A545" target="_blank" class="project-link">View More &rarr;</a>
+                </div>
+
+                <!-- CARD 5: SkillVul -->
+                <div class="project-card carousel-card">
+                    <h3>🎨 SkillVul Projects</h3>
+                    <p>
+                        UI/UX redesign of the Skillvul e-learning platform. Led a UX Research team,
+                        defined problem statements, and created an improved user-centered design system.
+                    </p>
+                    <a href="https://www.figma.com/proto/O35jupwlD5ohPH4xr0LI3n/Skillvul-Project-Case?node-id=1-4&viewport=412%2C386%2C0.41&t=i2QfjT7XOG761eDG-1&scaling=scale-down-width&content-scaling=fixed&page-id=0%3A1" target="_blank" class="project-link">View More &rarr;</a>
+                </div>
+
+                <!-- CARD 6: Thunder Landpage -->
+                <div class="project-card carousel-card">
+                    <h3>🎨 Thunder Landpage</h3>
+                    <p>
+                        UI/UX redesign of the Thunder application landing page. Led a UX Research team
+                        and delivered a modern, visually engaging design with improved user flow.
+                    </p>
+                    <a href="https://www.figma.com/proto/yOHtyJcnyhINArYjBT8Nse/%E2%9A%A1Thunder-Landpage?node-id=15626-559&viewport=584%2C153%2C0.16&t=MWTUobrRE6QZL66F-1&scaling=scale-down-width&content-scaling=fixed&page-id=15626%3A558" target="_blank" class="project-link">View More &rarr;</a>
+                </div>
+
+            </div>
+            <button class="carousel-btn carousel-next" onclick="scrollCarousel('projCarousel', 1)" aria-label="Next">&#8250;</button>
         </div>
+        <div class="carousel-dots" id="projDots"></div>
     </section>
 
     <!-- Blog Section -->
@@ -835,6 +857,68 @@
             }
         });
     </script>
+
+    <script>
+    // ── Carousel Logic — signed: dhani ──────────────────────────────────────
+    const CARDS_VISIBLE = () => window.innerWidth <= 768 ? 1 : window.innerWidth <= 1024 ? 2 : 3;
+
+    function getCardWidth(trackId) {
+        const track = document.getElementById(trackId);
+        const card  = track.querySelector('.carousel-card');
+        if (!card) return 320;
+        const gap = parseFloat(getComputedStyle(track).gap) || 24;
+        return card.offsetWidth + gap;
+    }
+
+    function scrollCarousel(trackId, dir) {
+        const track = document.getElementById(trackId);
+        const step  = getCardWidth(trackId) * CARDS_VISIBLE();
+        track.scrollBy({ left: dir * step, behavior: 'smooth' });
+    }
+
+    function buildDots(trackId, dotsId) {
+        const track = document.getElementById(trackId);
+        const dots  = document.getElementById(dotsId);
+        if (!track || !dots) return;
+
+        const cards     = track.querySelectorAll('.carousel-card');
+        const totalDots = Math.ceil(cards.length / CARDS_VISIBLE());
+        dots.innerHTML  = '';
+        for (let i = 0; i < totalDots; i++) {
+            const d = document.createElement('button');
+            d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            d.addEventListener('click', () => {
+                track.scrollTo({ left: getCardWidth(trackId) * CARDS_VISIBLE() * i, behavior: 'smooth' });
+            });
+            dots.appendChild(d);
+        }
+    }
+
+    function updateDots(track, dots) {
+        if (!dots) return;
+        const dotEls   = dots.querySelectorAll('.carousel-dot');
+        const cardW    = getCardWidth(track.id);
+        const cv       = CARDS_VISIBLE();
+        const activeIdx = Math.round(track.scrollLeft / (cardW * cv));
+        dotEls.forEach((d, i) => d.classList.toggle('active', i === activeIdx));
+    }
+
+    function initCarousels() {
+        [['certCarousel','certDots'],['projCarousel','projDots']].forEach(([tid, did]) => {
+            buildDots(tid, did);
+            const track = document.getElementById(tid);
+            const dots  = document.getElementById(did);
+            if (track) {
+                track.addEventListener('scroll', () => updateDots(track, dots), { passive: true });
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', initCarousels);
+    window.addEventListener('resize', initCarousels);
+    </script>
+
 </body>
 </html>
 

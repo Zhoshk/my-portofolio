@@ -1838,3 +1838,114 @@ html, body {
 * {
     box-sizing: border-box;
 }
+/* ═══════════════════════════════════════════════════════════
+   CAROUSEL — signed: dhani
+   ═══════════════════════════════════════════════════════════ */
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* hide scrollbar but keep scroll */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    flex: 1;
+    padding: 0.5rem 0.25rem 1rem;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+
+/* Each card inside carousel gets fixed width */
+.carousel-card {
+    flex: 0 0 calc((100% - 3rem) / 3);
+    min-width: 260px;
+    scroll-snap-align: start;
+}
+
+/* Arrow buttons */
+.carousel-btn {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 255, 140, 0.4);
+    background: rgba(10, 14, 26, 0.9);
+    color: #00FF8C;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 2;
+    line-height: 1;
+    padding-bottom: 2px;
+}
+.carousel-btn:hover {
+    background: rgba(0, 255, 140, 0.15);
+    border-color: #00FF8C;
+    box-shadow: 0 0 14px rgba(0, 255, 140, 0.3);
+}
+.carousel-btn:active { transform: scale(0.92); }
+.carousel-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+/* Dot indicators */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0, 255, 140, 0.25);
+    border: 1px solid rgba(0, 255, 140, 0.3);
+    cursor: pointer;
+    transition: all 0.25s;
+}
+.carousel-dot.active {
+    background: #00FF8C;
+    box-shadow: 0 0 8px rgba(0, 255, 140, 0.6);
+    transform: scale(1.2);
+}
+
+/* Mobile: show 1 card at a time */
+@media (max-width: 768px) {
+    .carousel-card {
+        flex: 0 0 85vw;
+        min-width: 0;
+    }
+    .carousel-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-card {
+        flex: 0 0 90vw;
+    }
+}
+
+/* Tablet: show 2 cards */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .carousel-card {
+        flex: 0 0 calc((100% - 1.5rem) / 2);
+    }
+}
